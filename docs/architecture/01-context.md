@@ -63,3 +63,47 @@ previously designed by the author for an employer.
 
 Future reference implementations will be created to validate
 the architecture using different technology stacks.
+
+## Architecture Problem
+
+The platform must provide a consistent environment in which application teams
+can onboard and operate microservices without creating independent delivery,
+security and operational mechanisms for every application.
+
+The architecture must therefore answer questions including:
+
+- How are applications onboarded?
+- How are workloads isolated?
+- How is software built and promoted?
+- How are deployment changes controlled?
+- How are identities and secrets managed?
+- How are security controls enforced?
+- How are workloads observed?
+- How is capacity managed?
+- How are failures detected and recovered?
+- How is platform state audited?
+- How are platform components upgraded or replaced?
+
+The objective is to create a reusable platform rather than a collection of
+application-specific infrastructure projects.
+
+## Architecture Scope
+
+The reference architecture covers:
+
+- platform infrastructure
+- workload orchestration
+- application onboarding
+- software delivery
+- security controls
+- identity and secrets
+- networking and storage
+- observability
+- reliability
+- recovery
+- platform operations
+- governance
+- lifecycle management
+
+Application business logic and application decomposition are outside the scope
+of this architecture.
