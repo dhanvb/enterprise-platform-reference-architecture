@@ -106,7 +106,6 @@ The current capability model contains the following major domains:
 
 ## Repository Structure
 
-```text
 docs/
 ├── architecture/
 │   ├── 01-context.md
