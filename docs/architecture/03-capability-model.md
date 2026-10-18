@@ -11,6 +11,7 @@ An implementation describes how that capability is delivered.
 
 ## High-Level Capability Model
 
+```text
                     APPLICATION TEAMS
                            │
                            ▼

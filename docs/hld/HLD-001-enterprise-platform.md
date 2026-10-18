@@ -140,29 +140,4 @@ Detailed capability definitions are maintained in:
 
 # 8. Logical Architecture
 
-```text
-                    APPLICATION TEAMS
-                           │
-                           ▼
-                 APPLICATION ONBOARDING
-                           │
-       ┌───────────────────┼──────────────────┐
-       │                   │                  │
-       ▼                   ▼                  ▼
- SOURCE & DELIVERY      SECURITY        OBSERVABILITY
-       │                   │                  │
-       └───────────────────┼──────────────────┘
-                           ▼
-                    PLATFORM SERVICES
-                           │
-       ┌───────────────────┼──────────────────┐
-       │                   │                  │
-       ▼                   ▼                  ▼
-    COMPUTE             NETWORK            STORAGE
-       │                   │                  │
-       └───────────────────┼──────────────────┘
-                           ▼
-                    INFRASTRUCTURE
-                           │
-                           ▼
-                  OPERATIONS & GOVERNANCE
+![Enterprise Platform Logical Architecture](../assets/diagrams/svg/03-logical-architecture.svg)

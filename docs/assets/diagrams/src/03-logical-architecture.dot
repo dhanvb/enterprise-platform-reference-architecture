@@ -1,0 +1,22 @@
+digraph G {graph [bgcolor="transparent", pad="0.35", nodesep="0.42", ranksep="0.75", fontname="Arial", splines=polyline, outputorder=edgesfirst]; node [shape=box, style="rounded,filled", fontname="Arial", fontsize=15, penwidth=1.3, margin="0.23,0.17"]; edge [color="#718096", penwidth=1.8, arrowsize=.7];
+rankdir=TB;ranksep=.9;nodesep=.56;
+team [label=<<B>APPLICATION TEAMS</B><BR/><FONT POINT-SIZE="11">Platform consumers</FONT>>,fillcolor="#152F49",fontcolor="white",color="#152F49"];
+onboard [label=<<B>ONBOARDING / SELF-SERVICE</B><BR/><FONT POINT-SIZE="11">Stable platform entry point</FONT>>,fillcolor="#DDEBFC",color="#79A9E4"];
+subgraph cluster_controls {label="CROSS-CUTTING ENABLEMENT";style="rounded,filled";color="#D8E4F1";fillcolor="#F7FAFE";fontname="Arial";fontcolor="#52708B";fontsize=13;margin=20;
+delivery[label="SOURCE & DELIVERY",fillcolor="#EAF2FF",color="#9BBBE7"];
+security[label="SECURITY",fillcolor="#EAF2FF",color="#9BBBE7"];
+obs[label="OBSERVABILITY",fillcolor="#EAF2FF",color="#9BBBE7"];
+{rank=same;delivery;security;obs;}delivery->security[style=invis];security->obs[style=invis];}
+service[label=<<B>PLATFORM SERVICES</B><BR/><FONT POINT-SIZE="11">Runtime abstractions &amp; shared capabilities</FONT>>,fillcolor="#DAF3E6",color="#77BD99"];
+subgraph cluster_resources {label="FOUNDATIONAL RESOURCE DOMAINS";style="rounded,filled";color="#D1E9DF";fillcolor="#F8FCFA";fontname="Arial";fontcolor="#52786B";fontsize=13;margin=20;
+compute[label="COMPUTE",fillcolor="#F0FAF5",color="#91C5AC"];
+network[label="NETWORK",fillcolor="#F0FAF5",color="#91C5AC"];
+storage[label="STORAGE",fillcolor="#F0FAF5",color="#91C5AC"];
+{rank=same;compute;network;storage;}compute->network[style=invis];network->storage[style=invis];}
+infra[label="INFRASTRUCTURE / HOSTING",fillcolor="#FFF0D9",color="#D9AF73"];
+gov[label=<<B>OPERATIONS &amp; GOVERNANCE</B><BR/><FONT POINT-SIZE="11">Lifecycle oversight spanning all layers</FONT>>,fillcolor="#EFE9FC",color="#AC93DB"];
+team->onboard; onboard->delivery;onboard->security;onboard->obs;
+delivery->service;security->service;obs->service;
+service->compute;service->network;service->storage;
+compute->infra;network->infra;storage->infra;infra->gov [style=dashed,label="operated under",fontsize=10,fontcolor="#64748B"];
+}

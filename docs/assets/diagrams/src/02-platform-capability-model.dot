@@ -1,0 +1,21 @@
+digraph G {graph [bgcolor="transparent", pad="0.35", nodesep="0.42", ranksep="0.75", fontname="Arial", splines=polyline, outputorder=edgesfirst]; node [shape=box, style="rounded,filled", fontname="Arial", fontsize=15, penwidth=1.3, margin="0.23,0.17"]; edge [color="#718096", penwidth=1.8, arrowsize=.7];
+rankdir=TB; nodesep=.54;ranksep=.72;
+team [label="APPLICATION TEAMS",fillcolor="#132C46",fontcolor="white",color="#132C46",fontsize=17];
+onboard [label=<<B>APPLICATION ONBOARDING</B><BR/><FONT POINT-SIZE="12">Request · validate · configure · provision</FONT>>,fillcolor="#DCEBFC",color="#6DA2DB"];
+source [label=<<B>SOURCE &amp; DELIVERY</B><BR/><FONT POINT-SIZE="11">Build · release · promotion</FONT>>,fillcolor="#EAF5FF",color="#82B5DD"];
+security [label=<<B>SECURITY</B><BR/><FONT POINT-SIZE="11">Identity · policy · secrets</FONT>>,fillcolor="#EAF5FF",color="#82B5DD"];
+obs [label=<<B>OBSERVABILITY</B><BR/><FONT POINT-SIZE="11">Metrics · logs · traces</FONT>>,fillcolor="#EAF5FF",color="#82B5DD"];
+services [label=<<B>PLATFORM SERVICES</B><BR/><FONT POINT-SIZE="12">Common runtime and shared services</FONT>>,fillcolor="#DDF5EA",color="#70B99B"];
+compute [label=<<B>COMPUTE</B><BR/><FONT POINT-SIZE="11">Workload execution</FONT>>,fillcolor="#F0FBF6",color="#88C8A8"];
+network [label=<<B>NETWORK</B><BR/><FONT POINT-SIZE="11">Connectivity &amp; exposure</FONT>>,fillcolor="#F0FBF6",color="#88C8A8"];
+storage [label=<<B>STORAGE</B><BR/><FONT POINT-SIZE="11">Persistent data</FONT>>,fillcolor="#F0FBF6",color="#88C8A8"];
+infra [label=<<B>INFRASTRUCTURE</B><BR/><FONT POINT-SIZE="12">Underlying hosting foundation</FONT>>,fillcolor="#FFF0DA",color="#DEAA64"];
+ops [label=<<B>OPERATIONS &amp; GOVERNANCE</B><BR/><FONT POINT-SIZE="12">Lifecycle · reliability · compliance · cost</FONT>>,fillcolor="#F1EBFC",color="#A28BD4"];
+team->onboard;
+onboard->source;onboard->security;onboard->obs;
+{rank=same;source;security;obs;}source->security[style=invis];security->obs[style=invis];
+source->services;security->services;obs->services;
+services->compute;services->network;services->storage;
+{rank=same;compute;network;storage;}compute->network[style=invis];network->storage[style=invis];
+compute->infra;network->infra;storage->infra;infra->ops;
+}

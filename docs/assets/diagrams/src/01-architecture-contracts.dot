@@ -1,0 +1,11 @@
+digraph G {graph [bgcolor="transparent", pad="0.35", nodesep="0.42", ranksep="0.75", fontname="Arial", splines=polyline, outputorder=edgesfirst]; node [shape=box, style="rounded,filled", fontname="Arial", fontsize=15, penwidth=1.3, margin="0.23,0.17"]; edge [color="#718096", penwidth=1.8, arrowsize=.7];
+rankdir=TB;
+node [color="#C7D2E2",fillcolor="#F8FAFC",fontcolor="#14243B"];
+top [label="LONG-LIVED PLATFORM DESIGN", fontsize=21, fillcolor="#102A43",fontcolor="white",color="#102A43",margin="0.42,0.27"];
+sub [label="Separate durable intent from replaceable technology",shape=plaintext,fontcolor="#52657A",fontsize=15];
+cap [label=<<B>PLATFORM CAPABILITY</B><BR/><FONT POINT-SIZE="12">What the platform must provide</FONT><BR/><FONT POINT-SIZE="12" COLOR="#475569">Example: workload deployment</FONT>>,fillcolor="#E9F2FF",color="#5893D4"];
+con [label=<<B>PLATFORM CONTRACT</B><BR/><FONT POINT-SIZE="12">How consumers use the capability</FONT><BR/><FONT POINT-SIZE="12" COLOR="#475569">Example: declarative deployment interface</FONT>>,fillcolor="#EAF8F2",color="#4BAA82"];
+impl [label=<<B>IMPLEMENTATION COMPONENT</B><BR/><FONT POINT-SIZE="12">Technology fulfilling the contract</FONT><BR/><FONT POINT-SIZE="12" COLOR="#475569">Example: GitOps controller (replaceable)</FONT>>,fillcolor="#FFF5E6",color="#D99B39"];
+top -> sub [style=invis]; sub -> cap [style=invis];cap -> con [label="exposed through",fontcolor="#64748B",fontsize=11]; con -> impl [label="fulfilled by",fontcolor="#64748B",fontsize=11];
+footer [shape=note,label="Architectural goal: evolve implementation without breaking the consumer contract",fillcolor="#F1F5F9",color="#CBD5E1",fontcolor="#334155",fontsize=12];impl->footer [style=dashed,arrowhead=none,color="#A7B6CA"];
+}
