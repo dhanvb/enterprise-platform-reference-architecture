@@ -11,29 +11,3 @@ An implementation describes how that capability is delivered.
 
 ## High-Level Capability Model
 
-```text
-                    APPLICATION TEAMS
-                           │
-                           ▼
-                 APPLICATION ONBOARDING
-                           │
-       ┌───────────────────┼──────────────────┐
-       │                   │                  │
-       ▼                   ▼                  ▼
- SOURCE & DELIVERY      SECURITY        OBSERVABILITY
-       │                   │                  │
-       └───────────────────┼──────────────────┘
-                           ▼
-                    PLATFORM SERVICES
-                           │
-       ┌───────────────────┼──────────────────┐
-       │                   │                  │
-       ▼                   ▼                  ▼
-    COMPUTE             NETWORK            STORAGE
-       │                   │                  │
-       └───────────────────┼──────────────────┘
-                           ▼
-                    INFRASTRUCTURE
-                           │
-                           ▼
-                  OPERATIONS & GOVERNANCE
