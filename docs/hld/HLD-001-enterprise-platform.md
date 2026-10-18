@@ -1,15 +1,3 @@
-
-That's enough for A01.
-
----
-
-# STEP 6: Fix the HLD
-
-Your current `HLD-001-enterprise-platform.md` is just eighteen headings.
-
-Replace it with this initial **v0.1**, not a fake completed HLD.
-
-```markdown
 # HLD-001: Enterprise Platform Reference Architecture
 
 **Status:** Draft  
