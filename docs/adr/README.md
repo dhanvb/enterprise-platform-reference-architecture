@@ -1,4 +1,3 @@
-```markdown
 # Architecture Decision Records
 
 Architecture Decision Records document significant architectural decisions
