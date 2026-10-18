@@ -104,6 +104,7 @@ The current capability model contains the following major domains:
 
 ---
 
+``` text
 ## Repository Structure
 
 docs/
