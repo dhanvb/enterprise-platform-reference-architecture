@@ -124,3 +124,4 @@ templates/
 ├── adr-template.md
 ├── hld-template.md
 └── lld-template.md
+```
