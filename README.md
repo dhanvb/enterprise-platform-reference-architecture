@@ -125,3 +125,52 @@ templates/
 ├── hld-template.md
 └── lld-template.md
 ```
+
+---
+
+## Capability-Driven Technology Selection
+
+The reference architecture defines platform capabilities and evaluation criteria independently of implementation technologies.
+
+The objective is to demonstrate how enterprise platform decisions can be derived from requirements, mandatory constraints and operational trade-offs.
+
+### Architecture Documentation
+
+- [Platform Capability Model](docs/architecture/03-capability-model.md)
+- [Capability Catalog](docs/architecture/04-capability-catalog.md)
+- [Platform Requirements](docs/architecture/05-platform-requirements.md)
+- [Technology Evaluation Framework](docs/architecture/06-technology-evaluation.md)
+- [ADR-002: Technology Selection](docs/adr/ADR-002-technology-selection.md)
+
+### Decision Evidence
+
+- [Requirements Traceability](docs/decisions/capability-traceability.csv)
+- [Candidate Scorecard](docs/decisions/technology-scorecard.csv)
+- [Risk Register](docs/decisions/risk-register.csv)
+- [Evidence Index](evidence/A02.md)
+
+### Validation
+
+From the repository root:
+
+~~~bash
+python3 validation/tests/test_a02.py
+~~~
+
+For Windows installations using the Python launcher:
+
+~~~bash
+py -3 validation/tests/test_a02.py
+~~~
+
+### Evidence Boundaries
+
+The repository includes architecture documentation, an illustrative decision exercise and executable consistency checks.
+
+It does not represent a completed production platform deployment or a verified vendor comparison.
+
+The Architecture phase establishes design reasoning.
+
+The Implementation phase will test actual technology configurations.
+
+The Operations phase will validate failure response, recovery, lifecycle and platform behavior.

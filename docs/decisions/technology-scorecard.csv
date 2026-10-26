@@ -1,0 +1,20 @@
+
+category,candidate,criterion,weight,gate_status,score,evidence_reference,assessment_status
+Runtime,Kubernetes distribution,Security and governance,25,UNKNOWN,,,NOT_ASSESSED
+Runtime,Kubernetes distribution,Operational maintainability,20,UNKNOWN,,,NOT_ASSESSED
+Runtime,Kubernetes distribution,Functional capability,20,UNKNOWN,,,NOT_ASSESSED
+Runtime,Kubernetes distribution,Reliability and lifecycle,15,UNKNOWN,,,NOT_ASSESSED
+Runtime,Kubernetes distribution,Total cost of ownership,10,UNKNOWN,,,NOT_ASSESSED
+Runtime,Kubernetes distribution,Organizational skills,10,UNKNOWN,,,NOT_ASSESSED
+Runtime,OpenShift,Security and governance,25,UNKNOWN,,,NOT_ASSESSED
+Runtime,OpenShift,Operational maintainability,20,UNKNOWN,,,NOT_ASSESSED
+Runtime,OpenShift,Functional capability,20,UNKNOWN,,,NOT_ASSESSED
+Runtime,OpenShift,Reliability and lifecycle,15,UNKNOWN,,,NOT_ASSESSED
+Runtime,OpenShift,Total cost of ownership,10,UNKNOWN,,,NOT_ASSESSED
+Runtime,OpenShift,Organizational skills,10,UNKNOWN,,,NOT_ASSESSED
+Build CI,GitHub Actions,Security and governance,25,UNKNOWN,,,NOT_ASSESSED
+Build CI,GitLab CI/CD,Security and governance,25,UNKNOWN,,,NOT_ASSESSED
+Build CI,Azure Pipelines,Security and governance,25,UNKNOWN,,,NOT_ASSESSED
+Build CI,Jenkins,Security and governance,25,UNKNOWN,,,NOT_ASSESSED
+GitOps,Argo CD,Security and governance,25,UNKNOWN,,,NOT_ASSESSED
+GitOps,Flux,Security and governance,25,UNKNOWN,,,NOT_ASSESSED

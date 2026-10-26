@@ -1,0 +1,18 @@
+
+requirement_id,requirement_category,priority,capability_ids,verification_method
+REQ-F01,Functional,Must,CAP-01;CAP-02,Ownership and resource isolation design review
+REQ-F02,Functional,Must,CAP-02;CAP-05;CAP-06,Environment authorization review
+REQ-F03,Functional,Must,CAP-03;CAP-04;CAP-05,Release traceability review
+REQ-F04,Functional,Should,CAP-05,Desired-state and drift-control review
+REQ-F05,Functional,Must,CAP-07,Telemetry and alert routing design review
+REQ-N01,Non-functional,Must,CAP-01;CAP-07;CAP-08,Availability and failure-domain analysis
+REQ-N02,Non-functional,Must,CAP-01;CAP-02;CAP-08,Capacity and scalability design review
+REQ-N03,Non-functional,Must,CAP-07;CAP-08,Recovery architecture review
+REQ-N04,Non-functional,Must,CAP-08,Upgrade and lifecycle review
+REQ-S01,Security,Must,CAP-02;CAP-06,Identity and authorization review
+REQ-S02,Security,Must,CAP-03;CAP-04;CAP-06,Artifact provenance design review
+REQ-S03,Security,Must,CAP-06,Policy enforcement control mapping
+REQ-S04,Security,Must,CAP-05;CAP-06;CAP-08,Audit evidence design review
+REQ-O01,Operations,Must,CAP-08,Operational support assessment
+REQ-O02,Operations,Must,CAP-08,Total cost of ownership assessment
+REQ-O03,Operations,Should,CAP-03;CAP-04;CAP-05;CAP-07,Technology replacement impact analysis

@@ -141,3 +141,73 @@ Detailed capability definitions are maintained in:
 # 8. Logical Architecture
 
 ![Enterprise Platform Logical Architecture](../assets/diagrams/svg/03-logical-architecture.svg)
+
+
+---
+
+## 9. Capability-Driven Technology Selection
+
+The enterprise platform architecture defines required capabilities before selecting the products used to implement them.
+
+### 9.1 Capability Domains
+
+The platform consists of eight major capability domains:
+
+1. Workload runtime
+2. Tenancy and isolation
+3. Build and verification
+4. Artifact management
+5. Deployment and reconciliation
+6. Identity, security and policy
+7. Observability and reliability
+8. Operations and lifecycle
+
+Each domain has identifiable responsibilities, requirements and operational dependencies.
+
+### 9.2 Selection Methodology
+
+Technology evaluation follows this order:
+
+1. Confirm business and workload requirements.
+2. Derive architectural capabilities.
+3. Apply mandatory organizational constraints.
+4. Identify viable implementation options.
+5. Evaluate candidates using documented criteria.
+6. Assess operational risks and lifecycle costs.
+7. Perform sensitivity analysis.
+8. Record an architecture decision.
+9. Obtain the required organizational approval.
+
+### 9.3 Separation of Responsibilities
+
+Continuous integration, artifact management, deployment reconciliation and workload execution are separate architectural capabilities.
+
+They may be provided by different products or by an integrated product suite.
+
+Their responsibilities must remain distinguishable in the architecture.
+
+### 9.4 Technology Independence
+
+The HLD does not mandate:
+
+- A specific Kubernetes distribution
+- OpenShift
+- A specific CI system
+- Argo CD or Flux
+- A particular cloud provider
+
+Such products may implement defined capabilities following a separate evaluation.
+
+### 9.5 Selected Architectural Approach
+
+ADR-002 establishes capability-driven technology selection as the reference architecture decision method.
+
+No final vendor or product selection is made in A02.
+
+### 9.6 Evidence
+
+- [Capability Catalog](../architecture/04-capability-catalog.md)
+- [Requirements](../architecture/05-platform-requirements.md)
+- [Technology Evaluation](../architecture/06-technology-evaluation.md)
+- [ADR-002](../adr/ADR-002-technology-selection.md)
+- [Architecture Evidence](../../evidence/A02.md)

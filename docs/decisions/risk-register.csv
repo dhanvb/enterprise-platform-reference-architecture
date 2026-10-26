@@ -1,0 +1,10 @@
+
+risk_id,description,impact,likelihood,status,mitigation,owner_role,related_requirements
+RISK-A02-001,Product chosen before requirements are validated,High,Medium,Open,Enforce capability and requirement review,Architecture Lead,REQ-O01
+RISK-A02-002,High scoring candidate fails mandatory security requirements,Critical,Medium,Open,Apply mandatory selection gates,Security Architect,REQ-S01;REQ-S03
+RISK-A02-003,Operational staffing insufficient for selected technology,High,High,Open,Assess skills and operating cost before selection,Platform Operations Lead,REQ-O01
+RISK-A02-004,Licensing and support costs underestimated,High,Medium,Open,Prepare lifecycle total cost assessment,Architecture Lead,REQ-O02
+RISK-A02-005,CI and GitOps evaluated as interchangeable products,Medium,Medium,Open,Separate build and reconciliation capabilities,Delivery Architect,REQ-F03;REQ-F04
+RISK-A02-006,Vendor dependency makes future replacement difficult,Medium,Medium,Open,Document interfaces and migration constraints,Architecture Lead,REQ-O03
+RISK-A02-007,Weighted evaluation contains unsupported scores,High,High,Open,Require evidence and sensitivity review,Architecture Lead,REQ-O02
+RISK-A02-008,Availability target mistaken for achieved SLA,High,Medium,Open,Separate design assumptions from measured service performance,Reliability Lead,REQ-N01
