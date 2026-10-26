@@ -107,23 +107,39 @@ The current capability model contains the following major domains:
 ``` text
 ## Repository Structure
 
-docs/
-├── architecture/
-│   ├── 01-context.md
-│   ├── 02-principles.md
-│   └── 03-capability-model.md
+enterprise-platform-reference-architecture/
 │
-├── hld/
-│   └── HLD-001-enterprise-platform.md
+├── README.md                               
 │
-└── adr/
-    ├── README.md
-    └── ADR-001-capability-before-product.md
-
-templates/
-├── adr-template.md
-├── hld-template.md
-└── lld-template.md
+├── docs/
+│   ├── architecture/
+│   │   ├── 01-context.md
+│   │   ├── 02-principles.md
+│   │   ├── 03-capability-model.md
+│   │   ├── 04-capability-catalog.md
+│   │   ├── 05-platform-requirements.md
+│   │   └── 06-technology-evaluation.md
+│   │
+│   ├── adr/
+│   │   ├── ADR-001-capability-before-product.md
+│   │   └── ADR-002-technology-selection.md
+│   │
+│   ├── decisions/
+│   │   ├── capability-traceability.csv
+│   │   ├── technology-scorecard.csv
+│   │   └── risk-register.csv
+│   │
+│   └── hld/
+│       └── HLD-001-enterprise-platform.md
+│
+├── validation/
+│   ├── tests/
+│   │   └── test_a02.py
+│   └── reports/
+│       └── A02-validation.md
+│
+└── evidence/
+    └── A02.md
 ```
 
 ---
