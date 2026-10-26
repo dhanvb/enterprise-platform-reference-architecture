@@ -25,13 +25,13 @@ py -3 validation/tests/test_a02.py
 
 | Check | Expected result | Actual |
 |---|---|---|
-| Unique requirements | 16 unique IDs | Pending |
-| Capability definitions | 8 unique IDs | Pending |
-| Complete requirement mapping | 16 of 16 | Pending |
-| Candidate worksheet consistency | 18 valid rows | Pending |
-| Weighted calculation | 3.50 vs 3.70 | Pending |
-| Sensitivity calculation | 3.95 vs 3.20 | Pending |
-| Risk register consistency | 8 valid records | Pending |
+| Unique requirements | 16 unique IDs | Validated |
+| Capability definitions | 8 unique IDs | Validated |
+| Complete requirement mapping | 16 of 16 | Validated |
+| Candidate worksheet consistency | 18 valid rows | Validated |
+| Weighted calculation | 3.50 vs 3.70 | Validated |
+| Sensitivity calculation | 3.95 vs 3.20 | Validated |
+| Risk register consistency | 8 valid records | Validated |
 
 ## Execution Record
 

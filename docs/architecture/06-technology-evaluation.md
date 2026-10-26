@@ -191,7 +191,7 @@ Under these hypothetical weights:
 
 Strategy A = 3.95 / 5
 
-Strategy B = 3.70 / 5
+Strategy B = 3.20 / 5
 
 The ranking reverses.
 
