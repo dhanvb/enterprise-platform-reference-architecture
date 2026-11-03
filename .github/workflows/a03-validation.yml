@@ -1,0 +1,76 @@
+
+name: A03 Architecture Validation
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-a03:
+    name: Validate Architecture and Contracts
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: contracts/onboarding/requirements-test.txt
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install -r contracts/onboarding/requirements-test.txt
+
+      - name: Install Graphviz
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y graphviz
+          dot -V
+
+      - name: Validate onboarding contract
+        run: |
+          python -m unittest discover \
+            -s contracts/onboarding \
+            -p "test_contract.py" \
+            -v
+
+      - name: Validate A03 architecture evidence
+        run: |
+          python -m pytest validation/tests/test_a03.py -v
+
+      - name: Run A02 regression tests
+        run: |
+          python -m pytest validation/tests/test_a02.py -v
+
+      - name: Render onboarding architecture diagram
+        run: |
+          mkdir -p /tmp/a03-diagrams
+
+          dot -Tsvg \
+            docs/assets/diagrams/src/04-onboarding-workflow.dot \
+            -o /tmp/a03-diagrams/04-onboarding-workflow.svg
+
+          test -s /tmp/a03-diagrams/04-onboarding-workflow.svg
+
+      - name: Verify committed diagram is present
+        run: |
+          test -s docs/assets/diagrams/svg/04-onboarding-workflow.svg
+
+      - name: Validate patch whitespace
+        run: |
+          git diff --check HEAD^ HEAD
