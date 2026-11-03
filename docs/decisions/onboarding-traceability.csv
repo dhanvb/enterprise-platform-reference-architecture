@@ -1,4 +1,3 @@
-
 requirement_id,verification_method,evidence_path,evidence_status
 A03-R01,Schema validation,contracts/onboarding/test_contract.py,Static verified
 A03-R02,Policy unit test,contracts/onboarding/test_contract.py,Static verified
