@@ -1,55 +1,93 @@
 
-# A03 Validation Report
+## GitHub Actions Validation
 
-**Status:** Reference snapshot validated locally; user repository execution pending  
-**Date:** 2026-11-03 (reference snapshot run)  
-**Target:** Contract static verification, documentation checks and diagram syntax
+**Workflow:** A03 Architecture Validation  
+**Run:** #2  
+**Result:** Passed  
+**Execution environment:** GitHub-hosted Ubuntu runner  
+**Python:** 3.11  
+**Execution duration:** 27 seconds
 
-## Preconditions
+### Verification Results
 
-- Python 3.10+ installed
-- `python -m pip install -r contracts/onboarding/requirements-test.txt`
-- Graphviz `dot` installed (for diagram check)
-- Run all commands from repository root
+| Validation | Result |
+|---|---|
+| Onboarding contract unit tests | 12 passed |
+| A03 architecture evidence tests | 5 passed |
+| A02 regression tests | 4 passed |
+| Graphviz diagram rendering | Passed |
+| Committed SVG verification | Passed |
+| Git patch whitespace validation | Passed |
 
-## Commands
 
-```bash
-python -m unittest discover -s contracts/onboarding -p 'test_contract.py' -v
-python -m pytest validation/tests/test_a03.py -v
-python -m pytest validation/tests/test_a02.py -v
-dot -Tsvg docs/assets/diagrams/src/04-onboarding-workflow.dot -o /tmp/a03-onboarding-workflow.svg
-```
+## Verified GitHub CI Execution
 
-On Windows PowerShell, replace the final output with `-o onboarding-workflow.svg`.
+**Validation date:** 2026-11-03
 
-The checked-in `.dot` is the source; a rendered image is optional unless you choose to retain it as additional evidence.
+**Repository:** dhanvb/enterprise-platform-reference-architecture
 
-## Reference snapshot run (separate from your own checkout)
+**Branch:** main
 
-| Check | Expected | Actual | Evidence link |
-|---|---|---|---|
-| Unit tests | 12 passing | 12 passed in supplied reference snapshot | Re-run in your local checkout |
-| A03 repository tests | 5 passing | 5 passed in supplied reference snapshot | Re-run in your local checkout |
-| Existing A02 regression tests | Existing suite passes | 4 passed in supplied reference snapshot | Re-run in your local checkout |
-| DOT render | Exit code zero and readable SVG | Graphviz rendered SVG successfully in reference snapshot | Inspect locally |
+**Commit SHA:** `93137679be5e3baf8b0e6d0f07d0fe347ed7dc46`
 
-## Boundaries
+**Commit reference:**
+[9313767](https://github.com/dhanvb/enterprise-platform-reference-architecture/commit/93137679be5e3baf8b0e6d0f07d0fe347ed7dc46)
 
-A successful test run proves only these static fixtures and documentation assertions.
+**Workflow:** A03 Architecture Validation
 
-It does **not** demonstrate actual approval, request authenticity, Kubernetes RBAC, network isolation, provisioning idempotency, workload health, backup or SLA compliance.
+**Workflow run:** #2
 
-Never mark pending integration/runtime controls as passed.
+**Workflow run URL:**
+https://github.com/dhanvb/enterprise-platform-reference-architecture/actions/runs/41690684004
 
-## Reviewer sign-off
+**Execution environment:** GitHub-hosted Ubuntu runner
 
-Reviewer: _Not assigned_  
-Review date: _Not recorded_  
-Decision: _Pending_
+**Python version:** 3.11
 
-## Your independent verification
+**CI conclusion:** SUCCESS
 
-After copying files into your local repository, rerun the commands, record Python and Graphviz versions and paste terminal output or attach log files.
+### Validation Results
 
-Do not treat the reference snapshot results as evidence that your local GitHub `main` branch passed.
+| Check | Result |
+|---|---|
+| Onboarding contract unit tests | 12 passed |
+| A03 repository validation | 5 passed |
+| A02 regression tests | 4 passed |
+| Graphviz diagram rendering | Passed |
+| Committed SVG presence | Passed |
+| Git patch whitespace validation | Passed |
+
+### Evidence Interpretation
+
+The workflow demonstrates successful static validation of
+the onboarding contract, architecture consistency, and
+diagram rendering at the recorded Git commit.
+
+This evidence does not establish production provisioning,
+authenticated approval enforcement, tenant isolation,
+or workload runtime security.
+
+These capabilities require separate integration and
+runtime validation.
+
+
+### Evidence
+
+GitHub Actions workflow:
+
+https://github.com/dhanvb/enterprise-platform-reference-architecture/actions
+
+The successful workflow demonstrates that the architecture's static validation checks execute on a clean GitHub-hosted runner.
+
+### Limitations
+
+The workflow does not establish:
+
+- Authenticated onboarding authorization.
+- Actual Kubernetes tenant isolation.
+- Production provisioning and reconciliation.
+- Runtime workload security enforcement.
+- Backup restoration or recovery performance.
+- Production availability or SLA compliance.
+
+These require separate implementation and runtime validation.
