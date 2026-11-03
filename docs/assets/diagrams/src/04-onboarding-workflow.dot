@@ -1,0 +1,106 @@
+
+digraph Onboarding {
+  graph [
+    rankdir=LR,
+    fontname="Helvetica",
+    label="A03: Application Onboarding - logical workflow",
+    labelloc=t,
+    fontsize=17,
+    pad=0.3
+  ];
+
+  node [
+    shape=box,
+    style="rounded,filled",
+    fillcolor="#F2F5F8",
+    color="#536170",
+    fontname="Helvetica",
+    fontsize=10
+  ];
+
+  edge [
+    color="#536170",
+    fontname="Helvetica",
+    fontsize=9
+  ];
+
+  requester [
+    label="Authenticated\nApplication Team"
+  ];
+
+  subgraph cluster_admission {
+    label="Untrusted declaration / admission boundary";
+    color="#9AA7B4";
+
+    declaration [
+      label="Versioned Contract\n+ revision digest"
+    ];
+
+    schema [
+      label="Schema Validation"
+    ];
+
+    policy [
+      label="Policy Evaluation"
+    ];
+
+    declaration -> schema -> policy;
+  }
+
+  subgraph cluster_authorization {
+    label="Independent authorization boundary";
+    color="#B98B43";
+
+    approval [
+      label="Identity / Team Entitlement\n+ Production Approval"
+    ];
+  }
+
+  subgraph cluster_runtime {
+    label="Privileged platform boundary";
+    color="#638C78";
+
+    orchestrator [
+      label="Idempotent Provisioner"
+    ];
+
+    runtime [
+      label="Execution Platform"
+    ];
+
+    verify [
+      label="Acceptance Verification"
+    ];
+
+    orchestrator -> runtime -> verify;
+  }
+
+  audit [
+    label="Append-controlled\nDecision & Audit Evidence",
+    shape=cylinder
+  ];
+
+  reject [
+    label="Reject / Needs Changes",
+    fillcolor="#FBE8E5"
+  ];
+
+  active [
+    label="Active / Handoff",
+    fillcolor="#E5F4E9"
+  ];
+
+  requester -> declaration;
+  schema -> reject [label="invalid"];
+  policy -> reject [label="denied"];
+  policy -> approval [label="eligible"];
+  approval -> reject [label="unauthorized"];
+  approval -> orchestrator [label="approved exact digest"];
+  verify -> active [label="pass"];
+  verify -> reject [label="fail; retain evidence"];
+
+  schema -> audit [style=dashed];
+  policy -> audit [style=dashed];
+  approval -> audit [style=dashed];
+  verify -> audit [style=dashed];
+}

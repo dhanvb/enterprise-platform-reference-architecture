@@ -1,3 +1,4 @@
+
 # Architecture Decision Records
 
 Architecture Decision Records document significant architectural decisions
@@ -26,5 +27,9 @@ ADRs may have one of the following states:
 | ADR | Decision | Status |
 |---|---|---|
 | [ADR-001](ADR-001-capability-before-product.md) | Define Platform Capabilities Before Selecting Products | Accepted |
+| [ADR-002](ADR-002-technology-selection.md) | Capability-Driven Platform Technology Selection | Accepted for reference architecture |
+| [ADR-003](ADR-003-declarative-onboarding-contract.md) | Declarative Versioned Onboarding Contract | Accepted for reference architecture |
+| [ADR-004](ADR-004-tenancy-and-isolation.md) | Risk-Based Tenancy and Isolation | Accepted for reference architecture |
+| [ADR-005](ADR-005-onboarding-approval-and-lifecycle.md) | Independent Approval and Lifecycle Gates | Accepted for reference architecture |
 
 Additional ADRs will be introduced as the architecture develops.

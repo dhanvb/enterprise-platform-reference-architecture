@@ -1,0 +1,309 @@
+
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/enterprise-platform/contracts/onboarding/v1/schema.json",
+  "title": "A03 platform onboarding contract v1",
+  "description": "Applicant-submitted desired state. Does not contain approval or credentials.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "apiVersion": {
+      "const": "platform.example.org/v1"
+    },
+    "kind": {
+      "const": "ApplicationOnboarding"
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "applicationId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]{2,39}$"
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 80
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "applicationId",
+        "displayName",
+        "revision"
+      ]
+    },
+    "owner": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "teamId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]{2,39}$"
+        },
+        "accountableEmail": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 254
+        },
+        "supportEmail": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 254
+        }
+      },
+      "required": [
+        "teamId",
+        "accountableEmail",
+        "supportEmail"
+      ]
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "environment": {
+          "enum": [
+            "development",
+            "staging",
+            "production"
+          ]
+        },
+        "serviceTier": {
+          "enum": [
+            "standard",
+            "critical"
+          ]
+        }
+      },
+      "required": [
+        "environment",
+        "serviceTier"
+      ]
+    },
+    "workload": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "replicas": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 50
+        },
+        "resources": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "cpuRequest": {
+              "type": "string",
+              "pattern": "^(?:[1-9][0-9]*m|(?:[1-9][0-9]*)(?:\\.[0-9]+)?)$"
+            },
+            "cpuLimit": {
+              "type": "string",
+              "pattern": "^(?:[1-9][0-9]*m|(?:[1-9][0-9]*)(?:\\.[0-9]+)?)$"
+            },
+            "memoryRequest": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]*(?:Ki|Mi|Gi|Ti)$"
+            },
+            "memoryLimit": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]*(?:Ki|Mi|Gi|Ti)$"
+            }
+          },
+          "required": [
+            "cpuRequest",
+            "cpuLimit",
+            "memoryRequest",
+            "memoryLimit"
+          ]
+        }
+      },
+      "required": [
+        "replicas",
+        "resources"
+      ]
+    },
+    "network": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "exposure": {
+          "enum": [
+            "internal",
+            "public"
+          ]
+        },
+        "containerPort": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65535
+        }
+      },
+      "required": [
+        "exposure",
+        "containerPort"
+      ]
+    },
+    "data": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "classification": {
+          "enum": [
+            "public",
+            "internal",
+            "confidential",
+            "restricted"
+          ]
+        },
+        "stateful": {
+          "type": "boolean"
+        },
+        "storageGiB": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 4096
+        }
+      },
+      "required": [
+        "classification",
+        "stateful",
+        "storageGiB"
+      ]
+    },
+    "operations": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "healthPath": {
+          "type": "string",
+          "pattern": "^/(?:[A-Za-z0-9._~/-]*)$",
+          "maxLength": 120
+        },
+        "rtoHours": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 168
+        },
+        "rpoHours": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 168
+        }
+      },
+      "required": [
+        "healthPath",
+        "rtoHours",
+        "rpoHours"
+      ]
+    }
+  },
+  "required": [
+    "apiVersion",
+    "kind",
+    "metadata",
+    "owner",
+    "target",
+    "workload",
+    "network",
+    "data",
+    "operations"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "data": {
+            "properties": {
+              "stateful": {
+                "const": false
+              }
+            },
+            "required": [
+              "stateful"
+            ]
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "then": {
+        "properties": {
+          "data": {
+            "properties": {
+              "storageGiB": {
+                "const": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "data": {
+            "properties": {
+              "stateful": {
+                "const": true
+              }
+            },
+            "required": [
+              "stateful"
+            ]
+          }
+        },
+        "required": [
+          "data"
+        ]
+      },
+      "then": {
+        "properties": {
+          "data": {
+            "properties": {
+              "storageGiB": {
+                "minimum": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "target": {
+            "properties": {
+              "serviceTier": {
+                "const": "critical"
+              }
+            },
+            "required": [
+              "serviceTier"
+            ]
+          }
+        },
+        "required": [
+          "target"
+        ]
+      },
+      "then": {
+        "properties": {
+          "target": {
+            "properties": {
+              "environment": {
+                "const": "production"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

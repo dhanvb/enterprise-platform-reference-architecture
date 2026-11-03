@@ -1,3 +1,4 @@
+
 # Enterprise Platform Reference Architecture
 
 A technology-neutral reference architecture for designing a secure,
@@ -106,11 +107,10 @@ The current capability model contains the following major domains:
 
 ## Repository Structure
 
-``` text
-
+```text
 enterprise-platform-reference-architecture/
 │
-├── README.md                               
+├── README.md
 │
 ├── docs/
 │   ├── architecture/
@@ -119,28 +119,52 @@ enterprise-platform-reference-architecture/
 │   │   ├── 03-capability-model.md
 │   │   ├── 04-capability-catalog.md
 │   │   ├── 05-platform-requirements.md
-│   │   └── 06-technology-evaluation.md
+│   │   ├── 06-technology-evaluation.md
+│   │   └── 07-application-onboarding-contract.md
 │   │
 │   ├── adr/
+│   │   ├── README.md
 │   │   ├── ADR-001-capability-before-product.md
-│   │   └── ADR-002-technology-selection.md
+│   │   ├── ADR-002-technology-selection.md
+│   │   ├── ADR-003-declarative-onboarding-contract.md
+│   │   ├── ADR-004-tenancy-and-isolation.md
+│   │   └── ADR-005-onboarding-approval-and-lifecycle.md
 │   │
 │   ├── decisions/
 │   │   ├── capability-traceability.csv
 │   │   ├── technology-scorecard.csv
-│   │   └── risk-register.csv
+│   │   ├── risk-register.csv
+│   │   ├── onboarding-traceability.csv
+│   │   └── onboarding-risk-register.csv
+│   │
+│   ├── assets/diagrams/src/
+│   │   └── 04-onboarding-workflow.dot
 │   │
 │   └── hld/
-│       └── HLD-001-enterprise-platform.md
+│       ├── HLD-001-enterprise-platform.md
+│       └── HLD-002-application-onboarding.md
+│
+├── contracts/
+│   ├── onboarding/
+│   │   ├── README.md
+│   │   ├── schema.json
+│   │   ├── test_contract.py
+│   │   └── requirements-test.txt
+│   └── examples/
+│       ├── valid-production.json
+│       └── invalid-missing-ownership.json
 │
 ├── validation/
 │   ├── tests/
-│   │   └── test_a02.py
+│   │   ├── test_a02.py
+│   │   └── test_a03.py
 │   └── reports/
-│       └── A02-validation.md
+│       ├── A02-validation.md
+│       └── A03-validation.md
 │
 └── evidence/
-    └── A02.md
+    ├── A02.md
+    └── A03.md
 ```
 
 ---
@@ -170,15 +194,15 @@ The objective is to demonstrate how enterprise platform decisions can be derived
 
 From the repository root:
 
-~~~bash
+```bash
 python3 validation/tests/test_a02.py
-~~~
+```
 
 For Windows installations using the Python launcher:
 
-~~~bash
+```bash
 py -3 validation/tests/test_a02.py
-~~~
+```
 
 ### Evidence Boundaries
 
@@ -191,3 +215,30 @@ The Architecture phase establishes design reasoning.
 The Implementation phase will test actual technology configurations.
 
 The Operations phase will validate failure response, recovery, lifecycle and platform behavior.
+
+---
+
+## A03: Application Onboarding Contract and Platform Consumption Model
+
+A03 defines the boundary between application teams and the platform: an applicant submits a versioned **declaration**, independent policy and authorization gates decide eligibility, and a future provisioning implementation verifies results before handoff.
+
+**Read in order:**
+
+1. [ARC-007: Requirements and responsibility boundary](docs/architecture/07-application-onboarding-contract.md)
+2. [HLD-002: Logical architecture](docs/hld/HLD-002-application-onboarding.md) and [Graphviz workflow source](docs/assets/diagrams/src/04-onboarding-workflow.dot)
+3. [ADR-003: Declarative contract](docs/adr/ADR-003-declarative-onboarding-contract.md), [ADR-004: Isolation](docs/adr/ADR-004-tenancy-and-isolation.md), [ADR-005: Approval lifecycle](docs/adr/ADR-005-onboarding-approval-and-lifecycle.md)
+4. [Contract field reference](contracts/onboarding/README.md), [JSON Schema](contracts/onboarding/schema.json), [valid example](contracts/examples/valid-production.json), [invalid example](contracts/examples/invalid-missing-ownership.json)
+5. [Traceability](docs/decisions/onboarding-traceability.csv), [risks](docs/decisions/onboarding-risk-register.csv), [evidence index](evidence/A03.md) and [validation report](validation/reports/A03-validation.md)
+
+### Static validation
+
+```bash
+python -m pip install -r contracts/onboarding/requirements-test.txt
+python -m unittest discover -s contracts/onboarding -p 'test_contract.py' -v
+python -m pytest validation/tests/test_a03.py validation/tests/test_a02.py -v
+dot -Tsvg docs/assets/diagrams/src/04-onboarding-workflow.dot -o onboarding-workflow.svg
+```
+
+Passing tests do not certify authenticated approvals, tenant isolation, production readiness or RTO/RPO.
+
+All runtime controls remain explicitly pending until tested.
