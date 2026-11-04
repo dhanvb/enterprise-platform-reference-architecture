@@ -1,93 +1,178 @@
 
-## GitHub Actions Validation
+# A03 Validation Report
 
-**Workflow:** A03 Architecture Validation  
-**Run:** #2  
-**Result:** Passed  
-**Execution environment:** GitHub-hosted Ubuntu runner  
-**Python:** 3.11  
-**Execution duration:** 27 seconds
+**Architecture Pack:** A03 - Application Onboarding Contract and Platform Consumption Model
 
-### Verification Results
+**Status:** Static Validation Passed
 
-| Validation | Result |
+**Validation Date:** 2026-11-04
+
+**Evidence Scope:** Architecture documentation, contract validation, repository consistency, regression testing and diagram generation.
+
+---
+
+## 1. Validation Objective
+
+The objective of A03 validation is to demonstrate that the proposed application onboarding architecture has:
+
+- A documented and versioned onboarding contract.
+- Machine-readable structural validation.
+- Executable cross-field policy checks.
+- Positive and negative contract test cases.
+- Traceable architecture requirements.
+- Documented architecture decisions and risks.
+- A reproducible CI validation workflow.
+- A syntactically valid Graphviz architecture diagram.
+
+This validation establishes static architecture evidence.
+
+It does not certify a deployed enterprise onboarding platform.
+
+## 2. Verified CI Execution
+
+| Attribute | Verified Value |
 |---|---|
-| Onboarding contract unit tests | 12 passed |
-| A03 architecture evidence tests | 5 passed |
-| A02 regression tests | 4 passed |
-| Graphviz diagram rendering | Passed |
-| Committed SVG verification | Passed |
-| Git patch whitespace validation | Passed |
+| Repository | dhanvb/enterprise-platform-reference-architecture |
+| Branch | main |
+| Workflow | A03 Architecture Validation |
+| Workflow Run | #5 |
+| Execution Date | 2026-11-04 |
+| Commit SHA | 2237094ab8c33c4b2c4c2f195ff5fe5cc319d744 |
+| Environment | GitHub-hosted Ubuntu |
+| Python | 3.11 |
+| Result | SUCCESS |
 
+**Validated Commit:**
 
-## Verified GitHub CI Execution
+[2237094](https://github.com/dhanvb/enterprise-platform-reference-architecture/commit/2237094ab8c33c4b2c4c2f195ff5fe5cc319d744)
 
-**Validation date:** 2026-11-03
+**GitHub Actions Evidence:**
 
-**Repository:** dhanvb/enterprise-platform-reference-architecture
+[A03 Architecture Validation - Run #5](https://github.com/dhanvb/enterprise-platform-reference-architecture/actions/runs/41792494155)
 
-**Branch:** main
+The commit SHA identifies the exact repository revision validated by this execution.
 
-**Commit SHA:** `93137679be5e3baf8b0e6d0f07d0fe347ed7dc46`
+Subsequent repository commits require their own CI execution to establish validation of those revisions.
 
-**Commit reference:**
-[9313767](https://github.com/dhanvb/enterprise-platform-reference-architecture/commit/93137679be5e3baf8b0e6d0f07d0fe347ed7dc46)
+## 3. Verification Results
 
-**Workflow:** A03 Architecture Validation
-
-**Workflow run:** #2
-
-**Workflow run URL:**
-https://github.com/dhanvb/enterprise-platform-reference-architecture/actions/runs/41690684004
-
-**Execution environment:** GitHub-hosted Ubuntu runner
-
-**Python version:** 3.11
-
-**CI conclusion:** SUCCESS
-
-### Validation Results
-
-| Check | Result |
+| Validation Activity | Result |
 |---|---|
-| Onboarding contract unit tests | 12 passed |
-| A03 repository validation | 5 passed |
+| Contract unit tests | 12 passed |
+| A03 repository tests | 5 passed |
 | A02 regression tests | 4 passed |
-| Graphviz diagram rendering | Passed |
+| Graphviz installation | Passed |
+| Graphviz workflow rendering | Passed |
+| Generated SVG nonempty check | Passed |
 | Committed SVG presence | Passed |
-| Git patch whitespace validation | Passed |
+| Git patch whitespace check | Passed |
 
-### Evidence Interpretation
+**Total Python tests:** 21 passed.
 
-The workflow demonstrates successful static validation of
-the onboarding contract, architecture consistency, and
-diagram rendering at the recorded Git commit.
+All steps in the referenced GitHub Actions workflow completed successfully.
 
-This evidence does not establish production provisioning,
-authenticated approval enforcement, tenant isolation,
-or workload runtime security.
+## 4. Reproduction Instructions
 
-These capabilities require separate integration and
-runtime validation.
+From the repository root, install the test dependencies:
 
+```bash
+python -m pip install -r contracts/onboarding/requirements-test.txt
+```
 
-### Evidence
+Run the contract unit tests:
 
-GitHub Actions workflow:
+```bash
+python -m unittest discover \
+  -s contracts/onboarding \
+  -p "test_contract.py" \
+  -v
+```
 
-https://github.com/dhanvb/enterprise-platform-reference-architecture/actions
+Run the architecture and regression tests:
 
-The successful workflow demonstrates that the architecture's static validation checks execute on a clean GitHub-hosted runner.
+```bash
+python -m pytest \
+  validation/tests/test_a03.py \
+  validation/tests/test_a02.py \
+  -v
+```
 
-### Limitations
+Validate Graphviz rendering:
 
-The workflow does not establish:
+```bash
+dot -Tsvg \
+  docs/assets/diagrams/src/04-onboarding-workflow.dot \
+  -o onboarding-workflow.svg
+```
 
-- Authenticated onboarding authorization.
-- Actual Kubernetes tenant isolation.
-- Production provisioning and reconciliation.
-- Runtime workload security enforcement.
-- Backup restoration or recovery performance.
-- Production availability or SLA compliance.
+The authoritative automated workflow is maintained at:
 
-These require separate implementation and runtime validation.
+`.github/workflows/a03-validation.yml`
+
+## 5. Evidence Interpretation
+
+### Verified static capabilities
+
+The current tests establish that:
+
+1. The documented onboarding schema is valid JSON Schema.
+2. The selected valid production example is accepted.
+3. The selected invalid ownership example is rejected.
+4. Selected resource and policy constraints are tested.
+5. Required architecture evidence files exist.
+6. Requirements are represented in the traceability register.
+7. Risk register entries contain mitigation and verification information.
+8. The existing A02 regression suite remains passing.
+9. The Graphviz workflow renders successfully.
+
+### Evidence boundaries
+
+Structural validation does not establish authorization.
+
+The Python policy helper is illustrative and is not an enterprise admission controller.
+
+Repository consistency tests verify selected documentation properties, not architectural correctness.
+
+The current automated fixture checks do not exhaustively validate every example stored under `contracts/examples/`.
+
+## 6. Unverified Integration Capabilities
+
+The following capabilities remain unimplemented or unverified:
+
+- Authenticated application onboarding requests.
+- Verification of applicant ownership and entitlement.
+- Independent production authorization.
+- Approval binding to immutable contract revisions.
+- Provisioning orchestration and idempotency.
+- Provisioning failure reconciliation.
+- Persistent approval and audit records.
+- Credential detection within permitted text fields.
+
+These capabilities require separate integration tests.
+
+## 7. Unverified Runtime Capabilities
+
+The following capabilities require a deployed test environment:
+
+- Kubernetes RBAC and tenant isolation.
+- Cross-namespace network-policy enforcement.
+- Resource quota admission.
+- Storage isolation and authorization.
+- Runtime workload-security enforcement.
+- Backup restoration and recovery testing.
+- Actual RTO/RPO measurement.
+- Production availability and SLA verification.
+
+No production-readiness claim is made by A03 static validation.
+
+## 8. Validation Conclusion
+
+A03 has successfully completed its defined static validation baseline.
+
+The architecture documentation, JSON Schema, selected contract fixtures, unit tests, repository checks and Graphviz workflow have reproducible CI evidence.
+
+The validated repository revision is recorded in Section 2.
+
+Integration and runtime controls remain outside the verified scope.
+
+**Conclusion:** A03 static validation passed. Integration and runtime verification remain pending.
