@@ -1,4 +1,3 @@
-
 requirement_id,requirement_category,priority,capability_ids,verification_method
 REQ-F01,Functional,Must,CAP-01;CAP-02,Ownership and resource isolation design review
 REQ-F02,Functional,Must,CAP-02;CAP-05;CAP-06,Environment authorization review
