@@ -1,0 +1,42 @@
+
+{
+  "apiVersion": "platform.example.org/v1",
+  "kind": "ApplicationOnboarding",
+  "metadata": {
+    "applicationId": "orders-api",
+    "displayName": "Orders API Staging",
+    "revision": 1
+  },
+  "owner": {
+    "teamId": "commerce-platform",
+    "accountableEmail": "owner@example.org",
+    "supportEmail": "oncall@example.org"
+  },
+  "target": {
+    "environment": "staging",
+    "serviceTier": "standard"
+  },
+  "workload": {
+    "replicas": 1,
+    "resources": {
+      "cpuRequest": "100m",
+      "cpuLimit": "500m",
+      "memoryRequest": "128Mi",
+      "memoryLimit": "512Mi"
+    }
+  },
+  "network": {
+    "exposure": "internal",
+    "containerPort": 8080
+  },
+  "data": {
+    "classification": "internal",
+    "stateful": false,
+    "storageGiB": 0
+  },
+  "operations": {
+    "healthPath": "/health/ready",
+    "rtoHours": 48,
+    "rpoHours": 48
+  }
+}

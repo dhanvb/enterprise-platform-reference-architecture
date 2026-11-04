@@ -3,7 +3,7 @@ A03-RISK-01,Forged ownership claim,High,Authenticate caller and verify team enti
 A03-RISK-02,Unapproved production deployment,High,Approval tied to immutable revision digest,Test modified document cannot reuse approval,Open
 A03-RISK-03,Cross-tenant network access,High,Enforcing CNI policies and isolated identity,Run deny-by-default east/west probe,Open
 A03-RISK-04,Resource exhaustion,Medium,Admission policy and quotas,Test overquota denial in runtime,Open
-A03-RISK-05,Secret exposure via declarations,High,Disallow extra fields and scan commits,Run secret scanner and negative cases,Open
+A03-RISK-05,Secret exposure within permitted contract fields,High,Use a separate secret scanning control and prohibit credential values in declarations,Test representative secret patterns and scanner enforcement,Open
 A03-RISK-06,Duplicate provisioning after retry,Medium,Idempotency key and reconciliation,Replay event and inspect resources,Open
 A03-RISK-07,Partial provisioning data loss,High,Safe failure state and non-destructive compensation,Inject failure after storage creation,Open
 A03-RISK-08,Accepted RTO/RPO assumptions without restore proof,High,Separate requested objectives from verified commitments,Restore test and time measurement,Open

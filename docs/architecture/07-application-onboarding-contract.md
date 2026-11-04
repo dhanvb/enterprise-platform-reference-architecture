@@ -61,7 +61,7 @@ See [HLD-002](../hld/HLD-002-application-onboarding.md) and [workflow](../assets
 |---|---|---|
 | A03-R01 | Require application identity, owner and environment | Negative schema test |
 | A03-R02 | Validate resource quantity formats and request/limit relationships | Schema and policy tests |
-| A03-R03 | Reject undeclared fields and embedded credentials | Schema test and secret scanning (pending) |
+| A03-R03 | Reject undeclared contract properties using closed-field schema validation | JSON Schema negative tests |
 | A03-R04 | Distinguish schema validity from authorization | Architecture review and integration test (pending) |
 | A03-R05 | Explicit production authorization tied to contract digest | Integration test (pending) |
 | A03-R06 | Enforce tenant isolation with multiple independent controls | Runtime tests (pending) |
@@ -69,6 +69,7 @@ See [HLD-002](../hld/HLD-002-application-onboarding.md) and [workflow](../assets
 | A03-R08 | Require operational and recovery information | Schema test |
 | A03-R09 | Reject invalid policy combinations | Unit test |
 | A03-R10 | Preserve contract versioning and auditable changes | Repository and integration review |
+| A03-R11 | Detect and prevent credential exposure within permitted contract text fields | Secret scanning and negative tests (pending) |
 
 ## 7. Acceptance and evidence levels
 

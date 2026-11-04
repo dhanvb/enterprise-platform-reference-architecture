@@ -1,7 +1,7 @@
 requirement_id,verification_method,evidence_path,evidence_status
 A03-R01,Schema validation,contracts/onboarding/test_contract.py,Static verified
 A03-R02,Policy unit test,contracts/onboarding/test_contract.py,Static verified
-A03-R03,Schema test; secret scanner pending,contracts/onboarding/test_contract.py,Design
+A03-R03,Closed-field schema validation,contracts/onboarding/test_contract.py,Static verified
 A03-R04,Architecture review; integration pending,docs/hld/HLD-002-application-onboarding.md,Pending integration
 A03-R05,Identity approval integration test pending,docs/adr/ADR-005-onboarding-approval-and-lifecycle.md,Pending integration
 A03-R06,Cross-tenant runtime tests pending,docs/adr/ADR-004-tenancy-and-isolation.md,Pending runtime
@@ -9,3 +9,4 @@ A03-R07,Audit log integration test pending,docs/hld/HLD-002-application-onboardi
 A03-R08,Schema test,contracts/onboarding/test_contract.py,Static verified
 A03-R09,Policy unit test,contracts/onboarding/test_contract.py,Static verified
 A03-R10,Repository and revision review; integration pending,docs/adr/ADR-003-declarative-onboarding-contract.md,Design
+A03-R11,Secret scanning and credential negative tests pending,docs/architecture/07-application-onboarding-contract.md,Pending integration

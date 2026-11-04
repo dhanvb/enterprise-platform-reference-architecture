@@ -60,7 +60,7 @@ def test_a03_requirement_traceability():
     ).open(newline="", encoding="utf-8") as file:
         rows = list(csv.DictReader(file))
 
-    assert len(rows) == 10
+    assert len(rows) == 11
     assert len({r["requirement_id"] for r in rows}) == len(rows)
 
     for row in rows:
