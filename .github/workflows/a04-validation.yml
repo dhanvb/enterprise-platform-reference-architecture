@@ -1,0 +1,57 @@
+name: A04 Consumption Architecture Validation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-a04:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: contracts/onboarding/requirements-test.txt
+
+      - name: Install dependencies
+        run: python -m pip install -r contracts/onboarding/requirements-test.txt
+
+      - name: Install Graphviz
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y graphviz
+          dot -V
+
+      - name: A03 contract regression
+        run: python -m unittest discover -s contracts/onboarding -p 'test_contract.py' -v
+
+      - name: A04 evaluator contract tests
+        run: python -m unittest discover -s contracts/consumption -p 'test_consumption.py' -v
+
+      - name: A02 A03 A04 repository checks
+        run: python -m pytest validation/tests/test_a02.py validation/tests/test_a03.py validation/tests/test_a04.py -v
+
+      - name: Render A04 diagram
+        run: |
+          mkdir -p docs/assets/diagrams/svg
+          dot -Tsvg docs/assets/diagrams/src/05-consumption-admission.dot -o /tmp/a04-consumption-admission.svg
+          test -s /tmp/a04-consumption-admission.svg
+
+      - name: Check whitespace
+        run: git diff --check

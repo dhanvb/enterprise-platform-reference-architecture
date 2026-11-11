@@ -1,0 +1,24 @@
+
+digraph A04Consumption {
+  graph [label="A04: Capacity eligibility versus authorization and reservation", labelloc=t, fontsize=18, fontname="Arial", rankdir=TB, pad=0.3, nodesep=0.4, ranksep=0.55];
+  node [shape=box, style="rounded,filled", fillcolor="#EFF6FF", color="#64748B", fontname="Arial", fontsize=11];
+  edge [color="#475569", fontname="Arial", fontsize=10];
+
+  declaration [label="A03 declaration\n(untrusted request)"];
+  a03 [label="A03 schema + cross-field policy\n(reject invalid input)"];
+  snapshot [label="Capacity snapshot\n(platform-controlled source: future)", fillcolor="#FEF3C7"];
+  evaluator [label="A04 offline evaluator\nexact demand + two headrooms", fillcolor="#DBEAFE"];
+  decision [label="Advisory decision\neligible / denied + reasons", fillcolor="#DCFCE7"];
+  auth [label="Independent identity + approval gate\n(FUTURE)", fillcolor="#FEE2E2"];
+  reserve [label="Atomic reservation / update\n(FUTURE)", fillcolor="#FEE2E2"];
+  runtime [label="Runtime enforcement + verification\n(FUTURE)", fillcolor="#FEE2E2"];
+  usage [label="Metering + showback\n(FUTURE)", fillcolor="#FEE2E2"];
+
+  declaration -> a03 -> evaluator -> decision;
+  snapshot -> evaluator;
+  decision -> auth [label="eligible only; no privilege granted", style=dashed];
+  auth -> reserve [style=dashed];
+  reserve -> runtime [style=dashed];
+  runtime -> usage [style=dashed];
+  decision -> declaration [label="denied: revise declaration", style=dotted, constraint=false];
+}

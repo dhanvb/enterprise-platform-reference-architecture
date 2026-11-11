@@ -242,3 +242,30 @@ dot -Tsvg docs/assets/diagrams/src/04-onboarding-workflow.dot -o onboarding-work
 Passing tests do not certify authenticated approvals, tenant isolation, production readiness or RTO/RPO.
 
 All runtime controls remain explicitly pending until tested.
+
+
+---
+
+## A04: Policy-Based Platform Consumption, Capacity Admission and Resource Governance
+
+A04 extends A03's versioned application declaration into a **static advisory capacity assessment**. The evaluator calculates workload demand in exact CPU millicores and memory KiB and compares requested capacity against both team entitlement and environment headroom. An `eligible` result is **not** deployment authorization or a resource reservation.
+
+**Read in order:**
+
+1. [ARC-008 architecture specification](docs/architecture/08-platform-consumption-model.md)
+2. [HLD-003 logical model](docs/hld/HLD-003-platform-consumption.md) and [editable Graphviz diagram](docs/assets/diagrams/src/05-consumption-admission.dot)
+3. [ADR-006 admission and entitlements](docs/adr/ADR-006-capacity-admission.md) and [ADR-007 accounting and showback](docs/adr/ADR-007-consumption-accounting.md)
+4. [Consumption contract guide](contracts/consumption/README.md), [snapshot schema](contracts/consumption/capacity-snapshot.schema.json), [decision schema](contracts/consumption/decision.schema.json), [evaluator](contracts/consumption/evaluate.py) and [test fixtures](contracts/consumption/examples/production-snapshot.json)
+5. [Traceability](docs/decisions/consumption-traceability.csv), [risks](docs/decisions/consumption-risk-register.csv), [validation report](validation/reports/A04-validation.md) and [A04 evidence index](evidence/A04.md)
+
+### A04 local static validation
+
+```bash
+python -m pip install -r contracts/onboarding/requirements-test.txt
+python -m unittest discover -s contracts/consumption -p 'test_consumption.py' -v
+python -m pytest validation/tests/test_a02.py validation/tests/test_a03.py validation/tests/test_a04.py -v
+python contracts/consumption/evaluate.py --declaration contracts/examples/valid-production.json --snapshot contracts/consumption/examples/production-snapshot.json
+dot -Tsvg docs/assets/diagrams/src/05-consumption-admission.dot -o docs/assets/diagrams/svg/05-consumption-admission.svg
+```
+
+The [A04 CI workflow](.github/workflows/a04-validation.yml) reruns A03 contract tests and A02/A03/A04 repository checks. Static success does not validate identity, capacity reservation races, Kubernetes admission, metering or financial showback.

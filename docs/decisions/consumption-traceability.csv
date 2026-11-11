@@ -1,0 +1,13 @@
+requirement_id,verification_method,evidence_path,evidence_status
+A04-R01,A03 compatibility unit tests,contracts/consumption/test_consumption.py,Pending static verification
+A04-R02,Exact-unit conversion unit tests,contracts/consumption/test_consumption.py,Pending static verification
+A04-R03,Replica and storage calculation tests,contracts/consumption/test_consumption.py,Pending static verification
+A04-R04,Team entitlement positive and negative tests,contracts/consumption/test_consumption.py,Pending static verification
+A04-R05,Environment capacity positive and negative tests,contracts/consumption/test_consumption.py,Pending static verification
+A04-R06,Snapshot schema and fail-closed tests,contracts/consumption/test_consumption.py,Pending static verification
+A04-R07,Decision schema and fixture equality tests,contracts/consumption/test_consumption.py,Pending static verification
+A04-R08,Separate eligibility and authorization architecture review,docs/adr/ADR-006-capacity-admission.md,Design
+A04-R09,Reservation update and idempotency integration test pending,docs/hld/HLD-003-platform-consumption.md,Pending integration
+A04-R10,Concurrent reservation integration test pending,docs/adr/ADR-006-capacity-admission.md,Pending integration
+A04-R11,Live metering and showback integration test pending,docs/adr/ADR-007-consumption-accounting.md,Pending integration
+A04-R12,Runtime enforcement verification pending,docs/hld/HLD-003-platform-consumption.md,Pending runtime

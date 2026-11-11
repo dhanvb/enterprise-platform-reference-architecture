@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/enterprise-platform/contracts/consumption/v1/decision.schema.json",
+  "title": "A04 advisory capacity decision v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["apiVersion", "kind", "evaluationKind", "applicationId", "revision", "declaredTeamId", "policyTeamId", "environment", "requestSha256", "snapshotId", "policyVersion", "demand", "teamHeadroom", "environmentHeadroom", "status", "reasons"],
+  "properties": {
+    "apiVersion": {"const": "platform.example.org/consumption/v1"},
+    "kind": {"const": "CapacityDecision"},
+    "evaluationKind": {"const": "advisory"},
+    "applicationId": {"type": "string", "pattern": "^[a-z][a-z0-9-]{2,39}$"},
+    "revision": {"type": "integer", "minimum": 1},
+    "declaredTeamId": {"type": "string", "pattern": "^[a-z][a-z0-9-]{2,39}$"},
+    "policyTeamId": {"type": "string", "pattern": "^[a-z][a-z0-9-]{2,39}$"},
+    "environment": {"enum": ["development", "staging", "production"]},
+    "requestSha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "snapshotId": {"type": "string", "minLength": 3},
+    "policyVersion": {"type": "string", "minLength": 1},
+    "demand": {
+      "allOf": [
+        {"$ref": "#/$defs/resources"},
+        {
+          "type": "object",
+          "required": ["cpuLimitMilli", "memoryLimitKi"],
+          "properties": {
+            "cpuLimitMilli": {"type": "integer", "minimum": 1},
+            "memoryLimitKi": {"type": "integer", "minimum": 1}
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    },
+    "teamHeadroom": {"$ref": "#/$defs/resources"},
+    "environmentHeadroom": {"$ref": "#/$defs/resources"},
+    "status": {"enum": ["eligible", "denied"]},
+    "reasons": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "TEAM_CPU_EXCEEDED",
+          "TEAM_MEMORY_EXCEEDED",
+          "TEAM_STORAGE_EXCEEDED",
+          "ENV_CPU_EXCEEDED",
+          "ENV_MEMORY_EXCEEDED",
+          "ENV_STORAGE_EXCEEDED"
+        ]
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"status": {"const": "eligible"}},
+        "required": ["status"]
+      },
+      "then": {"properties": {"reasons": {"maxItems": 0}}}
+    },
+    {
+      "if": {
+        "properties": {"status": {"const": "denied"}},
+        "required": ["status"]
+      },
+      "then": {"properties": {"reasons": {"minItems": 1}}}
+    }
+  ],
+  "$defs": {
+    "resources": {
+      "type": "object",
+      "required": ["cpuRequestMilli", "memoryRequestKi", "storageGiB"],
+      "properties": {
+        "cpuRequestMilli": {"type": "integer", "minimum": 0},
+        "memoryRequestKi": {"type": "integer", "minimum": 0},
+        "storageGiB": {"type": "integer", "minimum": 0}
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "apiVersion": "platform.example.org/consumption/v1",
+  "kind": "CapacitySnapshot",
+  "snapshotId": "prod-snapshot-001",
+  "capturedAt": "2026-11-11T12:00:00Z",
+  "policyVersion": "reference-policy-1",
+  "environment": "production",
+  "team": {
+    "teamId": "commerce-platform",
+    "entitlement": {
+      "cpuRequestMilli": 3000,
+      "memoryRequestKi": 4194304,
+      "storageGiB": 40
+    },
+    "committed": {
+      "cpuRequestMilli": 1000,
+      "memoryRequestKi": 1048576,
+      "storageGiB": 5
+    }
+  },
+  "capacity": {
+    "allocatable": {
+      "cpuRequestMilli": 12000,
+      "memoryRequestKi": 16777216,
+      "storageGiB": 200
+    },
+    "platformReserved": {
+      "cpuRequestMilli": 1000,
+      "memoryRequestKi": 1048576,
+      "storageGiB": 20
+    },
+    "safetyHeadroom": {
+      "cpuRequestMilli": 1000,
+      "memoryRequestKi": 1048576,
+      "storageGiB": 20
+    },
+    "committed": {
+      "cpuRequestMilli": 5000,
+      "memoryRequestKi": 8388608,
+      "storageGiB": 60
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/enterprise-platform/contracts/consumption/v1/capacity-snapshot.schema.json",
+  "title": "A04 advisory capacity snapshot v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["apiVersion", "kind", "snapshotId", "capturedAt", "policyVersion", "environment", "team", "capacity"],
+  "properties": {
+    "apiVersion": {"const": "platform.example.org/consumption/v1"},
+    "kind": {"const": "CapacitySnapshot"},
+    "snapshotId": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{2,79}$"},
+    "capturedAt": {"type": "string", "format": "date-time"},
+    "policyVersion": {"type": "string", "minLength": 1, "maxLength": 64},
+    "environment": {"enum": ["development", "staging", "production"]},
+    "team": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["teamId", "entitlement", "committed"],
+      "properties": {
+        "teamId": {"type": "string", "pattern": "^[a-z][a-z0-9-]{2,39}$"},
+        "entitlement": {"$ref": "#/$defs/resources"},
+        "committed": {"$ref": "#/$defs/resources"}
+      }
+    },
+    "capacity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allocatable", "platformReserved", "safetyHeadroom", "committed"],
+      "properties": {
+        "allocatable": {"$ref": "#/$defs/resources"},
+        "platformReserved": {"$ref": "#/$defs/resources"},
+        "safetyHeadroom": {"$ref": "#/$defs/resources"},
+        "committed": {"$ref": "#/$defs/resources"}
+      }
+    }
+  },
+  "$defs": {
+    "resources": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cpuRequestMilli", "memoryRequestKi", "storageGiB"],
+      "properties": {
+        "cpuRequestMilli": {"type": "integer", "minimum": 0},
+        "memoryRequestKi": {"type": "integer", "minimum": 0},
+        "storageGiB": {"type": "integer", "minimum": 0}
+      }
+    }
+  }
+}

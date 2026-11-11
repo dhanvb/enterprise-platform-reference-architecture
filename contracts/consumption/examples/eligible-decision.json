@@ -1,0 +1,32 @@
+{
+  "apiVersion": "platform.example.org/consumption/v1",
+  "kind": "CapacityDecision",
+  "evaluationKind": "advisory",
+  "applicationId": "orders-api",
+  "revision": 1,
+  "declaredTeamId": "commerce-platform",
+  "policyTeamId": "commerce-platform",
+  "environment": "production",
+  "requestSha256": "04432adedf04b017ce33a7a83416cdbd88d35beb003f4d829c72041a52b658f5",
+  "snapshotId": "prod-snapshot-001",
+  "policyVersion": "reference-policy-1",
+  "demand": {
+    "cpuRequestMilli": 500,
+    "memoryRequestKi": 524288,
+    "storageGiB": 0,
+    "cpuLimitMilli": 2000,
+    "memoryLimitKi": 2097152
+  },
+  "teamHeadroom": {
+    "cpuRequestMilli": 2000,
+    "memoryRequestKi": 3145728,
+    "storageGiB": 35
+  },
+  "environmentHeadroom": {
+    "cpuRequestMilli": 5000,
+    "memoryRequestKi": 6291456,
+    "storageGiB": 100
+  },
+  "status": "eligible",
+  "reasons": []
+}

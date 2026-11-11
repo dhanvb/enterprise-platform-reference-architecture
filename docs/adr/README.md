@@ -31,5 +31,9 @@ ADRs may have one of the following states:
 | [ADR-003](ADR-003-declarative-onboarding-contract.md) | Declarative Versioned Onboarding Contract | Accepted for reference architecture |
 | [ADR-004](ADR-004-tenancy-and-isolation.md) | Risk-Based Tenancy and Isolation | Accepted for reference architecture |
 | [ADR-005](ADR-005-onboarding-approval-and-lifecycle.md) | Independent Approval and Lifecycle Gates | Accepted for reference architecture |
+| [ADR-006](ADR-006-capacity-admission.md) | Independent Entitlements and Capacity Admission | Accepted for reference architecture |
+| [ADR-007](ADR-007-consumption-accounting.md) | Consumption Accounting and Cost Attribution | Accepted for reference architecture |
+
 
 Additional ADRs will be introduced as the architecture develops.
+

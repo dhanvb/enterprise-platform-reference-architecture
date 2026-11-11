@@ -1,0 +1,35 @@
+{
+  "apiVersion": "platform.example.org/consumption/v1",
+  "kind": "CapacityDecision",
+  "evaluationKind": "advisory",
+  "applicationId": "orders-api",
+  "revision": 1,
+  "declaredTeamId": "commerce-platform",
+  "policyTeamId": "commerce-platform",
+  "environment": "production",
+  "requestSha256": "15c8883ac494fdd6a52736e0ba78bf55a3ad08dc47dcb8edea1eea4b906e15e5",
+  "snapshotId": "prod-snapshot-001",
+  "policyVersion": "reference-policy-1",
+  "demand": {
+    "cpuRequestMilli": 6000,
+    "memoryRequestKi": 524288,
+    "storageGiB": 0,
+    "cpuLimitMilli": 8000,
+    "memoryLimitKi": 2097152
+  },
+  "teamHeadroom": {
+    "cpuRequestMilli": 2000,
+    "memoryRequestKi": 3145728,
+    "storageGiB": 35
+  },
+  "environmentHeadroom": {
+    "cpuRequestMilli": 5000,
+    "memoryRequestKi": 6291456,
+    "storageGiB": 100
+  },
+  "status": "denied",
+  "reasons": [
+    "TEAM_CPU_EXCEEDED",
+    "ENV_CPU_EXCEEDED"
+  ]
+}

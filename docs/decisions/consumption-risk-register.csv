@@ -1,0 +1,10 @@
+risk_id,risk,severity,mitigation,verification_needed,status
+A04-RISK-01,Applicant forges team identity,High,Use independently authenticated ownership and entitlement source,Integration test unauthorized team request denied,Open
+A04-RISK-02,Stale snapshot approves unavailable capacity,High,Revalidate under atomic commit-time transaction,Concurrency and snapshot expiry integration test,Open
+A04-RISK-03,Platform reservation double counting,High,Define mutually exclusive capacity counters and ledger invariants,Reconcile ledger totals with allocatable capacity,Open
+A04-RISK-04,Floating point normalization loses precision,Medium,Use Decimal and exact binary quantity conversion,Static fractional-millicore and memory tests,Open
+A04-RISK-05,Storage reduction prematurely releases allocation,High,Require verified storage lifecycle before resource release,Runtime storage resize and deletion tests,Open
+A04-RISK-06,Eligible decision reused as deployment approval,High,Enforce separate authenticated authorization bound to digest,Privilege escalation integration test,Open
+A04-RISK-07,Metering outage reported as zero usage,Medium,Track completeness and provenance of measurements,Telemetry outage injection test,Open
+A04-RISK-08,Unmodeled shared costs distort showback,Medium,Disclose exclusions and use governed rate card,Compare showback with finance-approved baseline,Open
+A04-RISK-09,Duplicate JSON keys alter policy interpretation,Medium,Reject duplicate keys before validation,Malformed JSON negative test,Open
