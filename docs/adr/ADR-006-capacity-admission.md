@@ -1,7 +1,6 @@
-
 # ADR-006: Independent Entitlements and Capacity Admission
 
-**Status:** Accepted for reference architecture  
+**Status:** Accepted for reference architecture
 **Decision scope:** Advisory capacity assessment; transaction-safe reservation is future work
 
 ## Context

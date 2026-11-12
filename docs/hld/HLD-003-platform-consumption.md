@@ -1,7 +1,6 @@
-
 # HLD-003: Platform Consumption and Capacity Admission
 
-**Status:** Proposed logical design  
+**Status:** Proposed logical design
 **Predecessor:** HLD-002 Application Onboarding
 
 ## Problem

@@ -36,4 +36,3 @@ ADRs may have one of the following states:
 
 
 Additional ADRs will be introduced as the architecture develops.
-

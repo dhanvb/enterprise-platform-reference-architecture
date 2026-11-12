@@ -1,7 +1,7 @@
 # A04 Validation Report
 
-**State:** Prepared for local execution; CI result not recorded  
-**Pack:** A04  
+**State:** Prepared for local execution; CI result not recorded
+**Pack:** A04
 **Validation target:** Static architecture evidence only
 
 ## Test environment

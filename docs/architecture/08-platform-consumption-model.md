@@ -1,11 +1,9 @@
-
 # ARC-008: Policy-Based Platform Consumption, Capacity Admission and Resource Governance
 
-**Document ID:** ARC-008  
-**Architecture Pack:** A04  
-**Status:** Proposed Reference Design  
-**Architecture Phase:** Architecture  
-**Evidence Level:** Design; static verification pending  
+**Document ID:** ARC-008
+**Status:** Proposed Reference Design
+**Architecture Phase:** Architecture
+**Evidence Level:** Design; static verification pending
 **Reference Baseline:** A03 Application Onboarding Contract v1
 
 ## 1. Purpose

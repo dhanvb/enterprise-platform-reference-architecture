@@ -1,7 +1,6 @@
-
 # ADR-007: Separate Commitments, Runtime Configuration and Usage for Showback
 
-**Status:** Accepted for reference architecture  
+**Status:** Accepted for reference architecture
 **Decision scope:** Consumption accounting design; metering and billing are not implemented
 
 ## Context

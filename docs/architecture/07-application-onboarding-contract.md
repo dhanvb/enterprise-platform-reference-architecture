@@ -2,7 +2,6 @@
 # ARC-007: Application Onboarding Contract and Platform Consumption Model
 
 **Status:** Proposed reference design  
-**Phase:** A03  
 **Related:** [Platform capability model](03-capability-model.md), [HLD-002](../hld/HLD-002-application-onboarding.md), ADR-003 through ADR-005
 
 ## 1. Problem and context
