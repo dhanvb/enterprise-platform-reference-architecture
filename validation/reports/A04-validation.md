@@ -1,55 +1,143 @@
 # A04 Validation Report
 
-**State:** Prepared for local execution; CI result not recorded
-**Pack:** A04
-**Validation target:** Static architecture evidence only
+**State:** Static validation completed for recorded baseline  
+**Architecture Pack:** A04  
+**Validation Date:** 2026-11-12 UTC  
+**Validation Scope:** Architecture consistency, contracts, offline capacity evaluation, regression tests and diagram rendering
 
-## Test environment
+## 1. Validated Baseline
 
-Record after running:
+| Attribute | Recorded Value |
+|---|---|
+| Repository | `dhanvb/enterprise-platform-reference-architecture` |
+| Branch | `main` |
+| Validated Commit | `e6ce1ca9b187dd0ec86d9b3594934707730cf812` |
+| A04 Workflow | A04 Consumption Architecture Validation #2 |
+| A04 Run ID | `43163836540` |
+| A04 Result | Success |
+| A03 Regression Workflow | A03 Architecture Validation #8 |
+| A03 Run ID | `43163836410` |
+| A03 Result | Success |
+| Python | 3.11.18 |
+| Graphviz | 2.43.0 |
+| Runner | GitHub-hosted Ubuntu |
+| Execution Date | 2026-11-12 UTC |
 
-- Date / UTC: TODO
-- Git commit SHA: TODO
-- Python version: TODO
-- GitHub Actions workflow and run URL: TODO
-- Diagram Graphviz version: TODO
+### Immutable Execution References
 
-## Commands
+- [Validated source commit](https://github.com/dhanvb/enterprise-platform-reference-architecture/commit/e6ce1ca9b187dd0ec86d9b3594934707730cf812)
+- [A04 successful workflow execution](https://github.com/dhanvb/enterprise-platform-reference-architecture/actions/runs/43163836540)
+- [A03 successful regression workflow execution](https://github.com/dhanvb/enterprise-platform-reference-architecture/actions/runs/43163836410)
 
-From repository root:
+These references identify the exact source revision and CI executions used to establish the A04 static-validation baseline.
+
+Subsequent documentation commits do not change the historical identity of this baseline.
+
+## 2. Validation Results
+
+| Test Group | Result | Evidence |
+|---|---|---|
+| A03 contract unit tests | 12 passed | A04 workflow #2 |
+| A04 evaluator unit tests | 13 passed | A04 workflow #2 |
+| A02/A03/A04 repository tests | 13 passed | A04 workflow #2 |
+| A04 Graphviz rendering | Passed | A04 workflow #2 |
+| A04 workflow completion | Success | Run `43163836540` |
+| A03 workflow completion | Success | Run `43163836410` |
+| A03 committed-patch whitespace check | Passed | A03 workflow #8 |
+
+**Total Python test executions in the A04 workflow: 38 passed.**
+
+The A04 workflow also reports a successful `git diff --check` step. Because that check operates on the clean checkout without an explicit commit range, it is not treated as independent proof that the committed patch is whitespace-free. The A03 workflow's `git diff --check HEAD^ HEAD` provides the relevant committed-patch check for this baseline.
+
+## 3. Verification Commands
+
+The reference validation uses:
 
 ```bash
-python -m pip install -r contracts/onboarding/requirements-test.txt
-python -m unittest discover -s contracts/onboarding -p 'test_contract.py' -v
-python -m unittest discover -s contracts/consumption -p 'test_consumption.py' -v
-python -m pytest validation/tests/test_a02.py validation/tests/test_a03.py validation/tests/test_a04.py -v
-dot -Tsvg docs/assets/diagrams/src/05-consumption-admission.dot -o docs/assets/diagrams/svg/05-consumption-admission.svg
-git diff --check
+python -m unittest discover \
+  -s contracts/onboarding \
+  -p 'test_contract.py' -v
+
+python -m unittest discover \
+  -s contracts/consumption \
+  -p 'test_consumption.py' -v
+
+python -m pytest \
+  validation/tests/test_a02.py \
+  validation/tests/test_a03.py \
+  validation/tests/test_a04.py -v
+
+dot -Tsvg \
+  docs/assets/diagrams/src/05-consumption-admission.dot \
+  -o /tmp/a04-consumption-admission.svg
 ```
 
-## Evidence recording table
+The exact execution logs are preserved in the linked GitHub Actions runs.
 
-| Check | Expected result | Actual result | Evidence link |
-|---|---|---|---|
-| A03 contract regression | Pass | Not recorded | TODO |
-| A04 offline evaluator tests | Pass | Not recorded | TODO |
-| A02/A03/A04 repository tests | Pass | Not recorded | TODO |
-| A04 diagram render | Nonempty SVG | Not recorded | TODO |
-| GitHub Actions A04 workflow | Success | Not recorded | TODO |
-| Tracked patch whitespace | Clean | Not recorded | TODO |
+## 4. Verified Static Capabilities
 
-## Interpretation
+The successful tests provide evidence for selected properties:
 
-Passing static tests supports selected schema, arithmetic and decision invariants. It does not prove authenticated team identity, trustworthy or fresh snapshots, atomic reservation, Kubernetes enforcement, workload scheduling, metering, cost attribution or production readiness.
+- A03 contract compatibility.
+- CPU and memory quantity normalization.
+- Aggregate workload resource calculations.
+- Team entitlement evaluation.
+- Environment capacity evaluation.
+- Positive and negative capacity decisions.
+- Selected malformed-input rejection.
+- Decision structure and deterministic expected outputs.
+- Requirements and repository evidence consistency.
+- Graphviz diagram rendering.
 
-## Known limitations
+These results demonstrate specific properties of the offline reference implementation.
 
-1. The evaluator handles advisory assessment of new proposed capacity. Existing allocation revision and release transactions are unimplemented.
-2. Snapshot integrity and provenance are not cryptographically verified.
-3. No live cluster or ledger has been contacted.
-4. The digest serialization is a documented Python implementation convention, not a cross-language authorization protocol.
-5. Currency rate cards, usage collection, SLA metrics and physical storage overhead are not implemented.
+They do not establish comprehensive correctness for every possible input or production scenario.
 
-## Closure rule
+## 5. Implementation and Runtime Limitations
 
-Replace TODO values only with observed results and working links. If a check fails, record the failure, remediation and subsequent successful run rather than deleting the history.
+The following capabilities are not verified by this static baseline:
+
+1. Authenticated requester and team entitlement retrieval.
+2. Trusted or live environment capacity snapshots.
+3. Atomic allocation reservation.
+4. Concurrent request handling and over-allocation prevention.
+5. Idempotent allocation changes and releases.
+6. Kubernetes admission and quota enforcement.
+7. Runtime workload scheduling and isolation.
+8. Live resource metering and reconciliation.
+9. Production showback or financial chargeback.
+10. Operational reliability and service-level guarantees.
+
+These remain future integration and runtime-verification requirements.
+
+## 6. Evidence Lifecycle and Commit Handling
+
+This report records an immutable historical validation event.
+
+The baseline commit is:
+
+`e6ce1ca9b187dd0ec86d9b3594934707730cf812`
+
+The successful A04 workflow is:
+
+`43163836540`
+
+The successful A03 regression workflow is:
+
+`43163836410`
+
+A later documentation commit may contain this report and reference the earlier validated source revision.
+
+That documentation commit does not replace the recorded baseline or require the report to update itself with a new SHA.
+
+Future implementation changes should establish new validation baselines when appropriate. Previous execution records should remain identifiable.
+
+## 7. Conclusion
+
+The A04 reference architecture has completed its recorded static-validation baseline.
+
+The evidence includes versioned architecture specifications, ADRs, contracts, deterministic offline evaluation, tests, requirement traceability, risk documentation and successful GitHub Actions execution.
+
+**Result: Static verification passed for the recorded source revision.**
+
+Production admission, reservation integrity, enforcement, metering and operational behavior remain unimplemented or unverified and must not be represented as completed capabilities.
