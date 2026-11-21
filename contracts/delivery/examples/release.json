@@ -1,0 +1,40 @@
+{
+  "apiVersion": "platform.example.org/v1",
+  "kind": "ReleaseRecord",
+  "releaseId": "orders-api-2026-11-20",
+  "applicationId": "orders-api",
+  "source": {
+    "repository": "https://github.com/example/orders-api",
+    "revision": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  },
+  "build": {
+    "builderId": "https://ci.example.org/builders/controlled-1",
+    "runId": "synthetic-run-1001",
+    "provenanceRef": "https://ci.example.org/evidence/run-1001/provenance.json"
+  },
+  "artifact": {
+    "reference": "registry.example.org/orders-api@sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "digest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "evidence": [
+    {
+      "type": "unit-test",
+      "uri": "https://ci.example.org/evidence/run-1001/unit-tests",
+      "subjectDigest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "result": "passed"
+    },
+    {
+      "type": "integration-test",
+      "uri": "https://ci.example.org/evidence/run-1001/integration-tests",
+      "subjectDigest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "result": "passed"
+    },
+    {
+      "type": "staging-verification",
+      "uri": "https://ci.example.org/evidence/run-1001/staging",
+      "subjectDigest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "result": "passed"
+    }
+  ],
+  "createdAt": "2026-11-20T08:00:00Z"
+}

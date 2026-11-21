@@ -1,0 +1,71 @@
+name: A05 Software Delivery Architecture Validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**'
+      - 'contracts/**'
+      - 'validation/**'
+      - 'evidence/**'
+      - '.github/workflows/a05-validation.yml'
+      - 'README.md'
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-a05:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: contracts/onboarding/requirements-test.txt
+
+      - name: Install dependencies
+        run: python -m pip install -r contracts/onboarding/requirements-test.txt
+
+      - name: Install Graphviz
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y graphviz
+          dot -V
+
+      - name: A03 contract regression
+        run: python -m unittest discover -s contracts/onboarding -p 'test_contract.py' -v
+
+      - name: A04 contract regression
+        run: python -m unittest discover -s contracts/consumption -p 'test_consumption.py' -v
+
+      - name: A05 contract validation
+        run: python -m unittest discover -s contracts/delivery -p 'test_delivery.py' -v
+
+      - name: A02 to A05 repository checks
+        run: python -m pytest validation/tests/test_a02.py validation/tests/test_a03.py validation/tests/test_a04.py validation/tests/test_a05.py -v
+
+      - name: Render A05 diagram
+        run: |
+          dot -Tsvg docs/assets/diagrams/src/06-release-promotion.dot -o /tmp/a05-release-promotion.svg
+          test -s /tmp/a05-release-promotion.svg
+
+      - name: Check committed patch whitespace
+        shell: bash
+        run: |
+          if git rev-parse HEAD^ >/dev/null 2>&1; then
+            git diff --check HEAD^ HEAD
+          else
+            echo 'No parent commit found; initial commit whitespace check not applicable.'
+          fi

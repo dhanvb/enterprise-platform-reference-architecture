@@ -1,0 +1,39 @@
+digraph A05Delivery {
+  graph [label="A05: Release identity, promotion policy, authorization and deployment", labelloc=t, fontsize=18, fontname="Arial", rankdir=LR, pad=0.3, nodesep=0.35, ranksep=0.65];
+  node [shape=box, style="rounded,filled", fillcolor="#EFF6FF", color="#64748B", fontname="Arial", fontsize=10];
+  edge [color="#475569", fontname="Arial", fontsize=9];
+
+  subgraph cluster_build {
+    label="Application / build boundary";
+    style="rounded,dashed";
+    source [label="Source revision"];
+    build [label="Build execution"];
+    registry [label="Immutable artifact\nregistry digest"];
+    release [label="Release record\n+ claimed evidence"];
+    source -> build -> registry -> release;
+  }
+  subgraph cluster_assess {
+    label="Assessment boundary";
+    style="rounded,dashed";
+    a03 [label="A03 declaration\n(version + digest)", fillcolor="#FEF3C7"];
+    request [label="Promotion request\n(environment + config)"];
+    evaluator [label="A05 offline evaluator\nmetadata checks only", fillcolor="#DBEAFE"];
+    decision [label="Advisory result\neligible / denied", fillcolor="#DCFCE7"];
+    release -> evaluator;
+    a03 -> evaluator;
+    request -> evaluator -> decision;
+  }
+  subgraph cluster_future {
+    label="Production trust boundary — NOT IMPLEMENTED";
+    style="rounded,dashed";
+    evidence [label="Independent evidence\nverification", fillcolor="#FEE2E2"];
+    auth [label="Authenticated authorization\n+ separation of duties", fillcolor="#FEE2E2"];
+    desired [label="Protected desired-state\nchange", fillcolor="#FEE2E2"];
+    reconciler [label="Restricted deployment\nreconciler", fillcolor="#FEE2E2"];
+    verify [label="Runtime verification\n+ audit", fillcolor="#FEE2E2"];
+    evidence -> auth [style=dashed];
+    auth -> desired -> reconciler -> verify [style=dashed];
+  }
+  decision -> evidence [label="advisory only", style=dashed];
+  registry -> evidence [style=dashed, constraint=false];
+}

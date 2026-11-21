@@ -1,0 +1,15 @@
+{
+  "apiVersion": "platform.example.org/v1",
+  "kind": "PromotionDecision",
+  "evaluationKind": "advisory",
+  "requestId": "promote-orders-prod-001",
+  "releaseId": "orders-api-2026-11-20",
+  "applicationId": "orders-api",
+  "targetEnvironment": "production",
+  "artifactDigest": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "configurationRevision": "cccccccccccccccccccccccccccccccccccccccc",
+  "onboardingSha256": "04432adedf04b017ce33a7a83416cdbd88d35beb003f4d829c72041a52b658f5",
+  "policyVersion": "a05-demo-v1",
+  "outcome": "eligible",
+  "reasons": []
+}

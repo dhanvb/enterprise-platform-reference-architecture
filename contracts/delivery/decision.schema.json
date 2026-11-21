@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/enterprise-platform/contracts/delivery/v1/decision.schema.json",
+  "title": "A05 advisory PromotionDecision v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["apiVersion", "kind", "evaluationKind", "requestId", "releaseId", "applicationId", "targetEnvironment", "artifactDigest", "configurationRevision", "onboardingSha256", "policyVersion", "outcome", "reasons"],
+  "properties": {
+    "apiVersion": {"const": "platform.example.org/v1"},
+    "kind": {"const": "PromotionDecision"},
+    "evaluationKind": {"const": "advisory"},
+    "requestId": {"type": "string", "minLength": 3},
+    "releaseId": {"type": "string", "minLength": 3},
+    "applicationId": {"type": "string", "minLength": 3},
+    "targetEnvironment": {"enum": ["development", "staging", "production"]},
+    "artifactDigest": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+    "configurationRevision": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "onboardingSha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "policyVersion": {"const": "a05-demo-v1"},
+    "outcome": {"enum": ["eligible", "denied"]},
+    "reasons": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"enum": ["RELEASE_ID_MISMATCH", "APPLICATION_ID_MISMATCH", "ARTIFACT_DIGEST_MISMATCH", "ARTIFACT_REFERENCE_MISMATCH", "ONBOARDING_REVISION_MISMATCH", "ONBOARDING_DIGEST_MISMATCH", "TARGET_ENVIRONMENT_MISMATCH", "MISSING_UNIT_TEST", "MISSING_INTEGRATION_TEST", "MISSING_STAGING_EVIDENCE", "FAILED_REQUIRED_EVIDENCE", "EVIDENCE_DIGEST_MISMATCH", "DUPLICATE_EVIDENCE_TYPE"]}
+    }
+  },
+  "allOf": [
+    {"if": {"properties": {"outcome": {"const": "eligible"}}}, "then": {"properties": {"reasons": {"maxItems": 0}}}},
+    {"if": {"properties": {"outcome": {"const": "denied"}}}, "then": {"properties": {"reasons": {"minItems": 1}}}}
+  ]
+}

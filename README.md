@@ -269,3 +269,49 @@ dot -Tsvg docs/assets/diagrams/src/05-consumption-admission.dot -o docs/assets/d
 ```
 
 The [A04 CI workflow](.github/workflows/a04-validation.yml) reruns A03 contract tests and A02/A03/A04 repository checks. Static success does not validate identity, capacity reservation races, Kubernetes admission, metering or financial showback.
+
+---
+
+## A05: Enterprise Software Delivery and Release Governance
+
+A05 defines the architectural boundaries required to promote application release artifacts through development, staging and production.
+
+The architecture distinguishes between:
+
+1. Source revision and build execution identity.
+2. Immutable release artifact identity.
+3. Release evidence and trust verification.
+4. Environment promotion eligibility.
+5. Independent production authorization.
+6. Governed desired-state deployment.
+7. Runtime verification and audit.
+
+### Architecture
+
+- [ARC-009: Enterprise Software Delivery](docs/architecture/09-enterprise-software-delivery.md)
+- [HLD-004: Software Delivery](docs/hld/HLD-004-software-delivery.md)
+- [ADR-008: Immutable Release Artifact Identity](docs/adr/ADR-008-release-artifact-identity.md)
+- [ADR-009: Promotion and Authorization](docs/adr/ADR-009-promotion-and-authorization.md)
+- [A05 Architecture Diagram](docs/assets/diagrams/svg/06-release-promotion.svg)
+
+### Contracts and validation
+
+- [Release and Promotion Contracts](contracts/delivery/README.md)
+- [Offline Promotion Evaluator](contracts/delivery/evaluate.py)
+- [Contract Unit Tests](contracts/delivery/test_delivery.py)
+- [GitHub Actions Workflow](.github/workflows/a05-validation.yml)
+
+### Governance and evidence
+
+- [Requirement Traceability](docs/decisions/delivery-traceability.csv)
+- [Risk Register](docs/decisions/delivery-risk-register.csv)
+- [Evidence Index](evidence/A05.md)
+- [Validation Report](validation/reports/A05-validation.md)
+
+### Evidence boundary
+
+A05 implements selected offline contract and policy consistency checks.
+
+It does not implement authenticated production approval, trusted software provenance verification, actual deployment reconciliation or runtime readiness verification.
+
+A release assessed as eligible is not automatically authorized for production deployment.

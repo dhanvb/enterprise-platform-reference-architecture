@@ -1,0 +1,15 @@
+requirement_id,verification_method,evidence_path,evidence_status
+A05-R01,Release schema and identity unit tests,contracts/delivery/test_delivery.py,Pending static verification
+A05-R02,OCI digest schema and reference match tests,contracts/delivery/test_delivery.py,Pending static verification
+A05-R03,Build and deployment authority separation design review,docs/adr/ADR-009-promotion-and-authorization.md,Design
+A05-R04,Build reference and evidence schema tests,contracts/delivery/test_delivery.py,Pending static verification
+A05-R05,Promotion artifact binding negative tests,contracts/delivery/test_delivery.py,Pending static verification
+A05-R06,Configuration revision binding tests,contracts/delivery/test_delivery.py,Pending static verification
+A05-R07,Authenticated authorization service integration test pending,docs/hld/HLD-004-software-delivery.md,Pending integration
+A05-R08,Exact tuple binding design and tests,contracts/delivery/test_delivery.py;docs/adr/ADR-009-promotion-and-authorization.md,Pending static verification
+A05-R09,Trusted desired-state reconciliation integration test pending,docs/hld/HLD-004-software-delivery.md,Pending integration
+A05-R10,Observed runtime identity and readiness tests pending,docs/hld/HLD-004-software-delivery.md,Pending runtime
+A05-R11,Controlled rollback design review,docs/adr/ADR-009-promotion-and-authorization.md,Design
+A05-R12,Invalid input and missing evidence negative tests,contracts/delivery/test_delivery.py,Pending static verification
+A05-R13,Audit trail integration verification pending,docs/hld/HLD-004-software-delivery.md,Pending integration
+A05-R14,Policy version schema and traceability tests,contracts/delivery/test_delivery.py,Pending static verification

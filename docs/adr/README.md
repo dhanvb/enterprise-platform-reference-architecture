@@ -33,6 +33,8 @@ ADRs may have one of the following states:
 | [ADR-005](ADR-005-onboarding-approval-and-lifecycle.md) | Independent Approval and Lifecycle Gates | Accepted for reference architecture |
 | [ADR-006](ADR-006-capacity-admission.md) | Independent Entitlements and Capacity Admission | Accepted for reference architecture |
 | [ADR-007](ADR-007-consumption-accounting.md) | Consumption Accounting and Cost Attribution | Accepted for reference architecture |
+| [ADR-008](ADR-008-release-artifact-identity.md) | Immutable Release Artifact Identity | Accepted for reference architecture |
+| [ADR-009](ADR-009-promotion-and-authorization.md) | Separate Promotion Eligibility, Authorization and Deployment | Accepted for reference architecture |
 
 
 Additional ADRs will be introduced as the architecture develops.

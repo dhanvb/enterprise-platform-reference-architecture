@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/enterprise-platform/contracts/delivery/v1/release.schema.json",
+  "title": "A05 ReleaseRecord v1 (unverified metadata)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["apiVersion", "kind", "releaseId", "applicationId", "source", "build", "artifact", "evidence", "createdAt"],
+  "properties": {
+    "apiVersion": {"const": "platform.example.org/v1"},
+    "kind": {"const": "ReleaseRecord"},
+    "releaseId": {"type": "string", "pattern": "^[a-z][a-z0-9-]{2,63}$"},
+    "applicationId": {"type": "string", "pattern": "^[a-z][a-z0-9-]{2,39}$"},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "revision"],
+      "properties": {
+        "repository": {"type": "string", "format": "uri"},
+        "revision": {"type": "string", "pattern": "^[a-f0-9]{40}$"}
+      }
+    },
+    "build": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["builderId", "runId", "provenanceRef"],
+      "properties": {
+        "builderId": {"type": "string", "format": "uri"},
+        "runId": {"type": "string", "minLength": 1, "maxLength": 128},
+        "provenanceRef": {"type": "string", "format": "uri"}
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reference", "digest"],
+      "properties": {
+        "reference": {"type": "string", "pattern": "^[a-z0-9.-]+(?::[0-9]+)?/[a-z0-9._/-]+@sha256:[a-f0-9]{64}$"},
+        "digest": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"}
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "uri", "subjectDigest", "result"],
+        "properties": {
+          "type": {"enum": ["unit-test", "integration-test", "staging-verification"]},
+          "uri": {"type": "string", "format": "uri"},
+          "subjectDigest": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"},
+          "result": {"enum": ["passed", "failed"]}
+        }
+      }
+    },
+    "createdAt": {"type": "string", "format": "date-time"}
+  }
+}

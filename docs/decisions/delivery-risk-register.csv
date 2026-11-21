@@ -1,0 +1,13 @@
+risk_id,risk,severity,mitigation,verification_needed,status
+A05-RISK-01,Mutable tag resolves to changed bytes,High,Require content digest-pinned image reference,Registry integration resolves matching digest,Open
+A05-RISK-02,Build metadata forged by application pipeline,Critical,Verify provenance against independent trusted builder identities,Signature and attestation verification integration test,Open
+A05-RISK-03,Test result URI claimed without real successful test,High,Fetch and verify trusted evidence bound to artifact,Trusted evidence integration test,Open
+A05-RISK-04,Applicant self-approves production deployment,Critical,Authenticated independent authorization and separation of duties,Unauthorized and self-approval integration tests,Open
+A05-RISK-05,Approval replay after configuration change,Critical,Bind approval to configuration revision and request identity,Modified request replay test,Open
+A05-RISK-06,CI bypasses policy using production credentials,Critical,Restrict production credentials to governed reconciler,Privilege and direct-deploy denial test,Open
+A05-RISK-07,Staging artifact differs from production,High,Require digest equality and controlled release record,Artifact mismatch negative tests and registry integration,Open
+A05-RISK-08,Failed reconciliation marked successful,High,Verify observed digest and readiness independently,Runtime drift and readiness integration test,Open
+A05-RISK-09,Rollback corrupts incompatible data,High,Review schema compatibility and recovery plan before rollback,Recovery exercise and data-integrity verification,Open
+A05-RISK-10,Audit records edited or lost,High,Protected append-only retention and access controls,Audit integrity and retention integration test,Open
+A05-RISK-11,A03 declaration altered while approval remains valid,High,Bind exact declaration digest and revision,Onboarding digest mutation negative test,Open
+A05-RISK-12,Stale capacity eligibility mistaken for reservation,High,Maintain independent A04 commit-time capacity gate,Concurrent reservation integration test,Open
